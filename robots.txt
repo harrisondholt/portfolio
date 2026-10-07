@@ -1,0 +1,8 @@
+# Note: crawlers only read robots.txt at the root of a host. On harrisondholt.github.io/portfolio/ this file
+# is ignored, so concept and tool pages also carry a noindex meta tag. On a custom domain this file applies.
+User-agent: *
+Allow: /
+Disallow: /concepts/
+Disallow: /tools/
+
+Sitemap: https://harrisondholt.github.io/portfolio/sitemap.xml
