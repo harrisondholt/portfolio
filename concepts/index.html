@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Design Directions</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;700;800&family=Sora:wght@400;500;700;800&display=swap">
+<style>
+/* Layout concept: a review sheet. Three equal cards, each carrying its own palette and type so the choice is visible before opening. */
+:root{
+  color-scheme:dark;
+  --bg:#0F1211; --surface:#171B19; --line:rgba(225,232,226,.14); --fg:#EDEFEA; --fg-2:#BCC4BD; --muted:#929D95; --link:#E8B84A;
+  --font:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 1rem/1.6 var(--font);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:1rem}
+@media(min-width:720px){.wrap{padding-inline:2rem}}
+h1,h2,h3,p,ul,dl,dd{margin:0}
+ul{padding:0;list-style:none}
+h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.1;text-wrap:balance}
+:focus-visible{outline:3px solid var(--link);outline-offset:3px}
+header.intro{padding-block:3.5rem 2rem}
+.eyebrow{font:500 .78rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.1rem,5vw,3.6rem);margin-top:1rem;max-width:18ch}
+.lead{margin-top:1.25rem;max-width:62ch;color:var(--fg-2);font-size:1.1rem}
+.cards{display:grid;gap:1rem;padding-block:1rem 3rem}
+@media(min-width:900px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.card{display:flex;flex-direction:column;gap:1.25rem;padding:1.5rem;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.card .tag{font:500 .75rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.card h2{font-size:1.7rem}
+.card .pitch{color:var(--fg-2)}
+.spec{display:flex;align-items:baseline;gap:1rem;padding:1rem;border-radius:6px}
+.spec .aa{font-size:3rem;line-height:1}
+.spec .names{font:400 .78rem/1.5 var(--mono);opacity:.85}
+.sw{display:flex;gap:.4rem}
+.sw i{flex:1;height:2.2rem;border-radius:4px;border:1px solid rgba(255,255,255,.12)}
+.dl dt{font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.9rem}
+.dl dd{margin-top:.35rem;color:var(--fg-2);font-size:.95rem}
+.open{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;min-height:3rem;padding:.7rem 1.2rem;border-radius:6px;background:var(--link);color:#0F1211;font-weight:700;text-decoration:none}
+.open:hover{background:#F2C762}
+.a .spec{background:#0D1411;color:#EAEDE4;font-family:"Schibsted Grotesk",sans-serif}.a .aa{font-weight:800;color:#8FB88A}
+.b .spec{background:#14100D;color:#F2EADC;font-family:"Archivo",sans-serif}.b .aa{font-weight:850;font-stretch:118%;color:#E8845C}
+.c .spec{background:#0A1214;color:#E5EEEC;font-family:"Sora",sans-serif}.c .aa{font-weight:800;color:#7CC9AE}
+.a .names{font-family:"IBM Plex Mono",monospace}.b .names{font-family:"IBM Plex Mono",monospace}.c .names{font-family:"JetBrains Mono",monospace}
+.facts{display:grid;gap:2rem;padding-block:0 4rem}
+@media(min-width:900px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.facts h2{font-size:1.5rem;margin-bottom:1rem}
+.facts li{padding:.55rem 0;border-bottom:1px solid var(--line);color:var(--fg-2);font-size:.97rem}
+.facts li b{color:var(--fg)}
+.note{padding-block:1.5rem 3rem;border-top:1px solid var(--line);font:400 .8rem/1.6 var(--mono);color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="intro wrap">
+  <p class="eyebrow">Harrison Holt &middot; Portfolio review</p>
+  <h1>Three directions, one set of content.</h1>
+  <p class="lead">Each concept is a full page with the same sections, the same verified metrics, and the same call-to-action placements, so you are comparing design and nothing else. Open each one, scroll it on your phone too, then tell me which to build. Mixing is fine.</p>
+</header>
+
+<main>
+  <div class="wrap">
+    <ul class="cards" aria-label="Design concepts">
+      <li class="card a">
+        <p class="tag">Concept A</p>
+        <h2>Command Center</h2>
+        <p class="pitch">A dashboard-forward page. KPI tiles, indexed bar charts, and a lead-flow diagram sit on a faint grid, with amber reserved for the action.</p>
+        <div class="spec" aria-hidden="true"><span class="aa">Aa</span><span class="names">Schibsted Grotesk<br>IBM Plex Mono</span></div>
+        <div class="sw" aria-label="Palette: moss black, sage, amber, bone"><i style="background:#0D1411"></i><i style="background:#1A2520"></i><i style="background:#8FB88A"></i><i style="background:#E8B84A"></i><i style="background:#EAEDE4"></i></div>
+        <dl class="dl"><dt>Best at</dt><dd>Reading as a technical operator. Recruiters see numbers in the first screen.</dd><dt>Trade-off</dt><dd>The most conventional of the three. Less memorable.</dd><dt>CTA wording shown</dt><dd>Let&rsquo;s Talk</dd></dl>
+        <a class="open" href="concept-a.html">Open Concept A</a>
+      </li>
+      <li class="card b">
+        <p class="tag">Concept B</p>
+        <h2>Case File</h2>
+        <p class="pitch">An editorial, story-first page. One huge headline, then each project is a chapter with a giant result numeral and a before-and-after plot.</p>
+        <div class="spec" aria-hidden="true"><span class="aa">Aa</span><span class="names">Archivo, expanded<br>IBM Plex Mono</span></div>
+        <div class="sw" aria-label="Palette: umber black, olive, coral, cream"><i style="background:#14100D"></i><i style="background:#251D17"></i><i style="background:#A8B56F"></i><i style="background:#E8845C"></i><i style="background:#F2EADC"></i></div>
+        <dl class="dl"><dt>Best at</dt><dd>Being remembered. Reads as strategy and storytelling for hiring managers and VPs.</dd><dt>Trade-off</dt><dd>Fewer dashboard visuals. Technical depth comes from the copy, not the diagrams.</dd><dt>CTA wording shown</dt><dd>Hire Me, with Let&rsquo;s Talk after projects</dd></dl>
+        <a class="open" href="concept-b.html">Open Concept B</a>
+      </li>
+      <li class="card c">
+        <p class="tag">Concept C</p>
+        <h2>Systems Map</h2>
+        <p class="pitch">A blueprint page. The hero is a diagram of the stack you operate, and every project is drawn as a pipeline with a measured callout.</p>
+        <div class="spec" aria-hidden="true"><span class="aa">Aa</span><span class="names">Sora<br>JetBrains Mono</span></div>
+        <div class="sw" aria-label="Palette: slate teal, mint, ochre, sand"><i style="background:#0A1214"></i><i style="background:#152629"></i><i style="background:#7CC9AE"></i><i style="background:#E0AE62"></i><i style="background:#EADFC2"></i></div>
+        <dl class="dl"><dt>Best at</dt><dd>Technical credibility. The strongest fit for platform and systems-minded interviewers.</dd><dt>Trade-off</dt><dd>The densest page. Needs the most care to keep it calm on a phone.</dd><dt>CTA wording shown</dt><dd>Let&rsquo;s Talk, plus Download my Resume</dd></dl>
+        <a class="open" href="concept-c.html">Open Concept C</a>
+      </li>
+    </ul>
+
+    <div class="facts">
+      <section aria-labelledby="real-h">
+        <h2 id="real-h">Real, from your resume</h2>
+        <ul>
+          <li><b>14M+</b> contact database, weekly health reporting, quarterly hygiene</li>
+          <li><b>+15%</b> MQL-to-SQL from the scoring and segmentation rebuild</li>
+          <li><b>+12%</b> average open rate, <b>+10&ndash;15%</b> from A/B tests</li>
+          <li><b>0</b> data lost across two Salesforce / Pardot migrations</li>
+          <li><b>6-person</b> team, 10+ client environments, 100+ onboarding programs</li>
+          <li>Five roles, two certifications, Texas State B.S., 2015</li>
+        </ul>
+      </section>
+      <section aria-labelledby="ph-h">
+        <h2 id="ph-h">Placeholder, still to confirm</h2>
+        <ul>
+          <li><b>Headshot.</b> A framed placeholder in each concept.</li>
+          <li><b>Testimonials.</b> Two empty slots. I will not invent quotes.</li>
+          <li><b>Problem narratives.</b> Drafted from the resume. The STAR stories will replace them.</li>
+          <li><b>Chart values.</b> Indexed to a baseline of 100. Real rates need the project record.</li>
+          <li><b>Response time.</b> &ldquo;Within 1 business day&rdquo; is a promise only you can make.</li>
+          <li><b>Email, location, resume PDF.</b> Taken from your resume, to be confirmed.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <div class="wrap note">Every concept uses semantic landmarks, a skip link, visible focus states, reduced-motion support, Person structured data, and no third-party scripts. Text colors measure at least 5.2:1 against their surfaces. The contact form is a preview and sends nothing.</div>
+</main>
+</body>
+</html>
