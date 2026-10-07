@@ -57,7 +57,7 @@
   --fs-h3:clamp(1.4rem,2.4vw,1.8rem); --fs-h2:clamp(1.8rem,3.2vw,2.4rem); --fs-h1:clamp(2.2rem,4.8vw,3.7rem);
   --fs-num:clamp(2rem,3.4vw,2.6rem);
   /* spacing (4px base) */
-  --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.5rem; --s6:2.25rem; --s7:3.5rem; --s8:5.5rem;
+  --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.5rem; --s6:2.25rem; --s7:3.5rem; --s8:5rem;
   /* shape, layout, motion */
   --r:10px; --wrap:1120px; --t:.15s;
 }
@@ -65,9 +65,10 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:5rem}
 body{margin:0;background:var(--bg);color:var(--fg);font:400 var(--fs-md)/1.6 var(--font);-webkit-font-smoothing:antialiased}
+body:has(dialog[open]){overflow:hidden}
 img,svg{max-width:100%}
 a{color:inherit}
-h1,h2,h3,h4,p,ul,ol,figure,dl,dd,blockquote{margin:0}
+h1,h2,h3,h4,h5,p,ul,ol,dl,dd,figure,blockquote{margin:0}
 ul,ol{padding:0;list-style:none}
 h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.1;text-wrap:balance}
 .wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--s4)}
@@ -76,8 +77,8 @@ h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.1;text-wrap:balance
 :focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:3px}
 .skip{position:absolute;left:var(--s4);top:-4rem;background:var(--amber);color:var(--amber-ink);padding:.6rem 1rem;border-radius:var(--r);font-weight:700;z-index:100}
 .skip:focus{top:var(--s2)}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
-@media(forced-colors:active){.lift-bar,.tier-bar,.blk{forced-color-adjust:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,::backdrop{transition:none!important;animation:none!important}}
+@media(forced-colors:active){.tier-bar,.blk{forced-color-adjust:none}}
 
 /* header */
 .top{position:sticky;top:0;z-index:50;background:rgba(22,20,18,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -99,84 +100,95 @@ h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.1;text-wrap:balance
 .btn-sm{min-height:2.5rem;padding:.5rem 1.1rem;font-size:.95rem}
 
 /* hero */
-.hero{display:grid;gap:var(--s7);padding-block:var(--s7) var(--s6)}
-@media(min-width:900px){.hero{grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);align-items:center;gap:var(--s8);padding-block:var(--s8) var(--s7)}}
+.hero{display:grid;gap:var(--s6);padding-block:var(--s7) var(--s5)}
+@media(min-width:900px){.hero{grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);align-items:center;gap:var(--s7);padding-block:var(--s7) var(--s6)}}
 h1{font-size:var(--fs-h1);line-height:1.08;letter-spacing:-.025em}
 h1 em{font-style:normal;color:var(--olive)}
 .lede{margin-top:var(--s5);max-width:52ch;font-size:var(--fs-lg);color:var(--fg-2)}
 .lede strong{color:var(--fg)}
-.cta-row{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
+.cta-row{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s5)}
 .avail{margin-top:var(--s4);font-size:var(--fs-sm);color:var(--muted)}
-.portrait{justify-self:center;width:100%;max-width:300px}
+.portrait{justify-self:center;width:100%;max-width:290px}
 .ph{position:relative;aspect-ratio:4/5;border-radius:14px;background:linear-gradient(165deg,var(--surface-2),var(--surface));display:grid;place-items:end center;overflow:hidden}
 .ph svg{width:74%;fill:var(--bg);opacity:.55}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .portrait figcaption{margin-top:var(--s3);font-size:var(--fs-sm);color:var(--muted)}
 
 /* sections */
-section.pad{padding-block:var(--s8) 0}
-h2{font-size:var(--fs-h2);margin-bottom:var(--s6)}
-.eyebrow{margin-bottom:var(--s2);font-size:var(--fs-sm);font-weight:700;color:var(--olive)}
+section.pad{padding-block:var(--s7) 0}
+h2{font-size:var(--fs-h2);margin-bottom:var(--s5)}
+.hint{margin:calc(-1*var(--s4)) 0 var(--s5);color:var(--muted)}
 .meta{font-size:var(--fs-sm);color:var(--muted)}
 
-/* results chart */
-.lift-rows{display:grid;gap:var(--s5)}
-.lift-row,.lift-axis{display:grid;grid-template-columns:minmax(0,1fr) 6rem;align-items:center;gap:var(--s2) var(--s3)}
-@media(min-width:760px){.lift-row,.lift-axis{grid-template-columns:16rem minmax(0,1fr) 6rem}}
-.lift-lab{grid-column:1/-1;text-decoration:none;font-weight:700;line-height:1.3}
-@media(min-width:760px){.lift-lab{grid-column:auto}}
-.lift-lab small{display:block;margin-top:.1rem;font-size:var(--fs-sm);font-weight:400;color:var(--muted)}
-a.lift-lab:hover{color:var(--olive)}
-.lift-track{height:1.4rem;display:flex;align-items:center;background-image:linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:25% 100%;border-right:1px solid var(--line)}
-.lift-bar{display:block;height:.7rem;width:var(--w);border-radius:0 4px 4px 0;background:var(--olive)}
-.lift-bar.range{background:linear-gradient(90deg,var(--olive) 66.67%,rgba(178,188,124,.4) 66.67%)}
-.lift-val{font-size:1.4rem;font-weight:800;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
-.lift-axis{margin-top:var(--s2);font-size:.8rem;color:var(--muted)}
-.lift-axis .ticks{grid-column:1;display:flex;justify-content:space-between}
-@media(min-width:760px){.lift-axis .ticks{grid-column:2}}
-.fine{margin-top:var(--s4);font-size:var(--fs-sm);color:var(--muted)}
-
-/* case studies */
-.cases{display:grid;gap:var(--s7)}
-.case{padding:var(--s5);background:var(--surface);border-radius:var(--r)}
-@media(min-width:720px){.case{padding:var(--s6)}}
-.case-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:var(--s4) var(--s6)}
-.case-head h3{margin-top:var(--s1);font-size:var(--fs-h3);max-width:22ch}
-.result{display:flex;align-items:baseline;gap:.6rem}
+/* shared result number */
+.result{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .6rem}
 .result b{font-size:var(--fs-num);font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--olive);font-variant-numeric:tabular-nums}
-.result span{max-width:11rem;font-size:var(--fs-sm);line-height:1.3;color:var(--fg-2)}
-.psr{display:grid;gap:var(--s5);margin-top:var(--s6);padding-top:var(--s5);border-top:1px solid var(--line)}
-@media(min-width:860px){.psr{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s6)}}
-.psr h4{margin-bottom:var(--s2);font-size:var(--fs-sm);font-weight:700;color:var(--olive)}
-.psr p{color:var(--fg-2)}
-.viz{margin-top:var(--s6);padding:var(--s5);background:var(--surface-2);border-radius:var(--r)}
+.result span{max-width:12rem;font-size:var(--fs-sm);line-height:1.3;color:var(--fg-2)}
+
+/* project cards */
+.work-grid{display:grid;gap:var(--s4)}
+@media(min-width:760px){.work-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s5)}}
+.pcard{position:relative;display:flex;flex-direction:column;gap:var(--s3);padding:var(--s5);background:var(--surface);border-radius:var(--r);transition:background var(--t)}
+.pcard:hover{background:var(--surface-2)}
+.pcard h3{font-size:var(--fs-h3);max-width:24ch}
+.tease{color:var(--fg-2);max-width:46ch}
+.open{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:.5rem;padding:0;border:0;background:none;color:var(--olive);font:700 .95rem/1.2 var(--font);cursor:pointer}
+.open::after{content:"";position:absolute;inset:0;border-radius:var(--r)}
+.open i{width:.45rem;height:.45rem;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg)}
+.open:focus-visible{outline:none}
+.pcard:has(.open:focus-visible){outline:3px solid var(--amber);outline-offset:3px}
+@media(min-width:760px){
+  .pcard.feat{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr) auto;grid-template-areas:"res meta open" "res title open" "res tease open";align-items:center;column-gap:var(--s6);row-gap:var(--s2)}
+  .pcard.feat .meta{grid-area:meta}.pcard.feat h3{grid-area:title}.pcard.feat .result{grid-area:res}.pcard.feat .tease{grid-area:tease}.pcard.feat .open{grid-area:open;margin-top:0;align-self:center}
+  .pcard.feat .result b{font-size:clamp(2.6rem,5vw,3.6rem)}
+}
+
+/* detail sheet (flip-in dialog) */
+dialog.sheet{width:min(94vw,780px);max-height:90vh;max-height:90dvh;padding:0;border:1px solid var(--line-2);border-radius:16px;background:var(--surface);color:var(--fg);overflow:auto;overscroll-behavior:contain}
+dialog.sheet::backdrop{background:rgba(8,6,5,.78)}
+dialog.sheet[open]{animation:flipIn .5s cubic-bezier(.2,.8,.2,1)}
+dialog.sheet[open]::backdrop{animation:fadeIn .3s ease}
+@keyframes flipIn{from{opacity:0;transform:perspective(1400px) rotateY(-85deg)}to{opacity:1;transform:perspective(1400px) rotateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.sheet-in{padding:var(--s5)}
+@media(min-width:720px){.sheet-in{padding:var(--s6)}}
+.sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s4)}
+.sheet-head h3{margin-top:var(--s1);font-size:var(--fs-h3);max-width:22ch}
+.close{flex:none;min-height:2.5rem;padding:.4rem 1rem;border:1px solid var(--line-2);border-radius:var(--r);background:transparent;color:var(--fg);font:700 .95rem/1 var(--font);cursor:pointer}
+.close:hover{border-color:var(--fg-2)}
+.sheet .result{margin-block:var(--s5) var(--s4)}
+.beat{display:grid;gap:var(--s1) var(--s5);padding-block:var(--s4);border-top:1px solid var(--line)}
+@media(min-width:640px){.beat{grid-template-columns:6.5rem minmax(0,1fr)}}
+.beat h4{font-size:var(--fs-sm);font-weight:700;color:var(--olive)}
+.beat p,.beat li{color:var(--fg-2)}
+.dots{display:grid;gap:var(--s2)}
+.dots li{position:relative;padding-left:1.1rem}
+.dots li::before{content:"";position:absolute;left:0;top:.7em;width:.4rem;height:.4rem;border-radius:50%;background:var(--olive)}
+.viz{margin-top:var(--s4);padding:var(--s5);background:var(--surface-2);border-radius:var(--r)}
 .viz figcaption{margin-bottom:var(--s4);font-weight:700}
-.built{margin-top:var(--s5);font-size:var(--fs-sm);color:var(--muted)}
+.built{margin-top:var(--s4);font-size:var(--fs-sm);color:var(--muted)}
 .built b{color:var(--fg-2);font-weight:600}
+.fine{margin-top:var(--s3);font-size:var(--fs-sm);color:var(--muted)}
 
 /* email anatomy */
 .emails{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3)}
-@media(min-width:760px){.emails{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:640px){.emails{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .email h5{margin:0 0 var(--s2);font-size:var(--fs-sm);font-weight:700;color:var(--fg-2)}
 .wf{display:flex;flex-direction:column;gap:6px;padding:8px;background:var(--bg);border:1px solid var(--line-2);border-radius:8px}
 .wf div{display:flex;flex-direction:column;justify-content:center;padding:6px 8px;border-radius:5px;font-size:.8rem;line-height:1.25}
-.wf small{display:block;margin-top:1px;font-size:.72rem;line-height:1.25;color:inherit}
-.wf .blk small{color:var(--fg-2)}
-.wf .hf{min-height:2.2rem;background:var(--surface-2);color:var(--muted)}
-.wf .blk{min-height:3.6rem;background:var(--olive-soft);border:1px solid var(--olive);color:var(--fg)}
+.wf small{display:block;margin-top:1px;font-size:.72rem;line-height:1.25;color:var(--fg-2)}
+.wf .blk{min-height:3.4rem;background:var(--olive-soft);border:1px solid var(--olive);color:var(--fg)}
+.wf .blk.sm{min-height:2.3rem}
 .wf .cta{min-height:1.9rem;align-items:center;border:1px solid var(--fg-2);border-radius:999px;color:var(--fg-2);font-weight:600}
 .key{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5);margin-top:var(--s4);font-size:var(--fs-sm);color:var(--fg-2)}
-.key span::before{content:"";display:inline-block;width:.8rem;height:.8rem;margin-right:.45rem;border-radius:3px;vertical-align:-1px;background:var(--surface-2);border:1px solid var(--line-2)}
-.key .k-blk::before{background:var(--olive-soft);border-color:var(--olive)}
+.key span::before{content:"";display:inline-block;width:.8rem;height:.8rem;margin-right:.45rem;border-radius:3px;vertical-align:-1px;background:var(--olive-soft);border:1px solid var(--olive)}
 .key .k-cta::before{background:transparent;border-color:var(--fg-2);border-radius:999px}
 
 /* audience by stage */
-/* phone: horizontal bars, label first */
 .tiers{display:grid;gap:var(--s2)}
 .tiers li{display:grid;grid-template-columns:5rem minmax(0,1fr);align-items:center;gap:var(--s3)}
 .tier-bar{order:2;height:1.1rem;width:var(--h);border-radius:0 4px 4px 0;background:var(--olive)}
 .tiers span.lb{order:1;font-size:var(--fs-sm);color:var(--fg-2)}
-/* wider screens: vertical bars */
 @media(min-width:640px){
   .tiers{grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
   .tiers li{grid-template-columns:none;grid-template-rows:8rem auto;align-items:stretch;gap:var(--s2)}
@@ -186,71 +198,72 @@ a.lift-lab:hover{color:var(--olive)}
 
 /* three-step flow */
 .steps{display:grid;gap:var(--s3)}
-@media(min-width:760px){.steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5)}}
+@media(min-width:640px){.steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5)}}
 .step{position:relative;padding:var(--s4);background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r)}
 .step h5{margin:0 0 var(--s1);font-size:var(--fs-sm);font-weight:700;color:var(--muted)}
 .step p{color:var(--fg)}
 .step.to{border-color:var(--olive)}
 .step:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:-.5rem;width:.8rem;height:.8rem;background:var(--surface-2);border-right:2px solid var(--fg-2);border-bottom:2px solid var(--fg-2);transform:translateX(-50%) rotate(45deg)}
-@media(min-width:760px){.step:not(:last-child)::after{left:auto;right:-.95rem;top:50%;bottom:auto;transform:translateY(-50%) rotate(-45deg)}}
+@media(min-width:640px){.step:not(:last-child)::after{left:auto;right:-.95rem;top:50%;bottom:auto;transform:translateY(-50%) rotate(-45deg)}}
 
 /* more work */
-.more{margin-top:var(--s7)}
+.more{margin-top:var(--s6)}
 .more h3{margin-bottom:var(--s3);font-size:var(--fs-lg)}
 .row{display:grid;gap:var(--s1) var(--s5);padding-block:var(--s4);border-top:1px solid var(--line)}
-.row:last-child{border-bottom:1px solid var(--line)}
+.row:last-of-type{border-bottom:1px solid var(--line)}
 @media(min-width:760px){.row{grid-template-columns:minmax(0,5fr) minmax(0,6fr) 9rem;align-items:baseline}}
 .row b{font-weight:700}
 .row .meta{margin-top:.1rem}
 .row p{color:var(--fg-2)}
 .row .m{font-weight:800;color:var(--olive);font-variant-numeric:tabular-nums}
 @media(min-width:760px){.row .m{text-align:right}}
-
-/* CTA band */
-.cta-band{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s5);margin-top:var(--s7);padding:var(--s6);background:var(--surface-2);border-radius:var(--r)}
-.cta-band h3{max-width:26ch;font-size:var(--fs-h3)}
+.clients{margin-top:var(--s4);font-size:var(--fs-sm);color:var(--muted)}
 
 /* skills */
-.skills{display:grid;gap:var(--s6) var(--s5)}
-@media(min-width:720px){.skills{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(min-width:1040px){.skills{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.skills h3{margin-bottom:var(--s3);padding-bottom:var(--s3);border-bottom:1px solid var(--line-2);font-size:1.05rem}
-.skills li{padding:.2rem 0;color:var(--fg-2)}
+.skills>div{display:grid;gap:var(--s2) var(--s5);padding-block:var(--s4);border-top:1px solid var(--line)}
+.skills>div:last-child{border-bottom:1px solid var(--line)}
+@media(min-width:760px){.skills>div{grid-template-columns:14rem minmax(0,1fr)}}
+.skills dt{font-weight:700}
+.skills ul{display:flex;flex-wrap:wrap;gap:.2rem .45rem}
+.skills li{color:var(--fg-2)}
+.skills li:not(:last-child)::after{content:","}
 
-/* testimonials and certifications */
-.quotes{display:grid;gap:var(--s5)}
-@media(min-width:960px){.quotes{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s6)}}
-.quote{display:flex;flex-direction:column;gap:var(--s4);padding-top:var(--s4);border-top:2px solid var(--olive)}
-.quote blockquote{font-size:var(--fs-lg);line-height:1.5}
-.quote figcaption{margin-top:auto;font-size:var(--fs-sm);color:var(--muted)}
-.quote figcaption b{display:block;color:var(--fg);font-weight:700}
+/* testimonials */
+.orbs{display:grid;gap:var(--s7);justify-items:center;padding-block:var(--s2)}
+@media(min-width:900px){.orbs{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5);align-items:start}.orb:nth-child(2){margin-top:var(--s7)}}
+.orb{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s3);width:min(100%,340px);aspect-ratio:1;padding:12%;border-radius:50%;text-align:center;background:radial-gradient(circle at 30% 22%,var(--surface-2),var(--surface) 72%)}
+.orb::before{content:"";position:absolute;inset:-8px;border:1px solid var(--olive);border-radius:50%;opacity:.4;pointer-events:none}
+.orb blockquote{font-size:.95rem;line-height:1.45}
+.orb figcaption{font-size:var(--fs-sm);line-height:1.35;color:var(--muted)}
+.orb figcaption b{display:block;color:var(--fg)}
 .src{margin-top:var(--s5);font-size:var(--fs-sm);color:var(--muted)}
 .src a{color:var(--olive)}
-.certs{margin-top:var(--s7)}
-.certs h3{margin-bottom:var(--s3);font-size:var(--fs-lg)}
-.certs li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s1) var(--s4);padding-block:var(--s3);border-top:1px solid var(--line)}
-.certs li:last-child{border-bottom:1px solid var(--line)}
-.certs b{font-weight:700}
-.certs span{color:var(--muted)}
 
-/* resume */
-.tl li{display:grid;gap:var(--s1) var(--s5);padding-block:var(--s4);border-top:1px solid var(--line)}
-.tl li:last-child{border-bottom:1px solid var(--line)}
-@media(min-width:760px){.tl li{grid-template-columns:11rem minmax(0,1fr) minmax(0,1fr);align-items:baseline}}
-.tl .when{font-size:var(--fs-sm);color:var(--muted)}
-.tl b{display:block;font-weight:700}
-.tl .co{font-size:var(--fs-sm);color:var(--muted)}
-.tl .imp{color:var(--olive)}
-.edu{margin-top:var(--s4);font-size:var(--fs-sm);color:var(--muted)}
-.dl{margin-top:var(--s5)}
+/* resume and certifications */
+.resume-grid{display:grid;gap:var(--s6)}
+@media(min-width:900px){.resume-grid{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:var(--s7);align-items:start}}
+.side h3{margin:var(--s5) 0 var(--s2);font-size:var(--fs-lg)}
+.side .edu{margin-top:var(--s5);font-size:var(--fs-sm);color:var(--muted)}
+.side .edu b{display:block;color:var(--fg-2);font-weight:600}
+.certs li{display:flex;flex-direction:column;padding-block:var(--s3);border-top:1px solid var(--line)}
+.certs li:last-child{border-bottom:1px solid var(--line)}
+.certs b{font-weight:700;line-height:1.3}
+.certs span{font-size:var(--fs-sm);color:var(--muted)}
+.tl{display:grid;gap:var(--s5);padding-left:var(--s5);border-left:1px solid var(--line-2)}
+.tl li{position:relative}
+.tl li::before{content:"";position:absolute;left:calc(-1*var(--s5) - 4px);top:.55rem;width:7px;height:7px;border-radius:50%;background:var(--olive)}
+.tl .when{display:block;font-size:var(--fs-sm);color:var(--muted)}
+.tl b{display:block;font-size:1.08rem}
+.tl .co{color:var(--fg-2)}
+.tl .imp{display:block;margin-top:.1rem;color:var(--olive)}
 
 /* contact */
-footer{margin-top:var(--s8);background:var(--surface)}
-.foot{display:grid;gap:var(--s7);padding-block:var(--s8)}
-@media(min-width:900px){.foot{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s8)}}
+footer{margin-top:var(--s7);background:var(--surface)}
+.foot{display:grid;gap:var(--s6);padding-block:var(--s7)}
+@media(min-width:900px){.foot{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s7)}}
 .foot h2{margin-bottom:var(--s4)}
 .foot p{color:var(--fg-2)}
-.links{display:grid;gap:var(--s3);margin-top:var(--s6)}
+.links{display:grid;gap:var(--s3);margin-top:var(--s5)}
 .links dt{font-size:var(--fs-sm);color:var(--muted)}
 .links dd{font-size:var(--fs-lg)}
 .links a{text-underline-offset:4px}
@@ -268,6 +281,7 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
 .ok h3,.fail h3{margin-bottom:var(--s2);font-size:1.4rem}
 .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s2);padding-block:var(--s5);border-top:1px solid var(--line);font-size:var(--fs-sm);color:var(--muted)}
 </style>
+<noscript><style>dialog.sheet{display:block;position:static;width:auto;max-height:none;margin:var(--s5) 0;animation:none}.open,.close{display:none}</style></noscript>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -311,194 +325,213 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
     </figure>
   </section>
 
-  <section class="wrap pad" aria-labelledby="results-h">
-    <h2 id="results-h">Results</h2>
-    <figure>
-      <figcaption class="sr-only">Percent improvement over each program&rsquo;s prior baseline, on one shared axis.</figcaption>
-      <ul class="lift-rows">
-        <li class="lift-row"><a class="lift-lab" href="#upsell">Customer upgrades<small>Upsell and cross-sell campaign</small></a><span class="lift-track" aria-hidden="true"><span class="lift-bar" style="--w:75%"></span></span><span class="lift-val">~15%</span></li>
-        <li class="lift-row"><a class="lift-lab" href="#scoring">MQL-to-SQL conversion<small>Lead scoring realignment</small></a><span class="lift-track" aria-hidden="true"><span class="lift-bar" style="--w:75%"></span></span><span class="lift-val">+15%</span></li>
-        <li class="lift-row"><a class="lift-lab" href="#resume">Engagement and conversion<small>A/B testing program</small></a><span class="lift-track" aria-hidden="true"><span class="lift-bar range" style="--w:75%"></span></span><span class="lift-val">+10&ndash;15%</span></li>
-        <li class="lift-row"><a class="lift-lab" href="#resume">Average open rate<small>14M+ contact programs</small></a><span class="lift-track" aria-hidden="true"><span class="lift-bar" style="--w:60%"></span></span><span class="lift-val">+12%</span></li>
-        <li class="lift-row"><a class="lift-lab" href="#deliverability">Email deliverability<small>Within one quarter</small></a><span class="lift-track" aria-hidden="true"><span class="lift-bar" style="--w:50%"></span></span><span class="lift-val">+10%</span></li>
-      </ul>
-      <div class="lift-axis" aria-hidden="true"><span class="ticks"><span>0</span><span>5%</span><span>10%</span><span>15%</span><span>20%</span></span></div>
-      <p class="fine">Improvement over each program&rsquo;s prior baseline. The lighter end of the A/B bar marks the top of the 10&ndash;15% range.</p>
-    </figure>
-  </section>
-
   <section class="wrap pad" id="work" aria-labelledby="work-h">
     <h2 id="work-h">Selected work</h2>
+    <p class="hint">Select a project for the full story.</p>
 
-    <div class="cases">
-      <!-- 1 UPSELL -->
-      <article class="case" id="upsell" aria-labelledby="p1-h">
-        <header class="case-head">
-          <div><p class="meta">Comcast Business &middot; Hero Digital</p><h3 id="p1-h">Dynamic upsell and cross-sell campaign</h3></div>
-          <p class="result"><b>~15%</b><span>more customer upgrades</span></p>
-        </header>
-        <div class="psr">
-          <div><h4>Problem</h4><p>Customers got static-list outreach, not messages based on behavior or firmographics. Expansion revenue was capped.</p></div>
-          <div><h4>Solution</h4><p>A four-email Eloqua campaign with dynamic content blocks that match each customer to the products they are most likely to buy next. Modular, so offers change without a rebuild.</p></div>
-          <div><h4>Result</h4><p>A 25% average open rate and roughly 15% more upgrades, ahead of quarterly targets.</p></div>
-        </div>
-        <figure class="viz" aria-labelledby="v1-cap">
-          <figcaption id="v1-cap">How each email was built</figcaption>
-          <ol class="emails">
-            <li class="email"><h5>Email 1</h5><div class="wf"><div class="hf">Header image<small>product-specific</small></div><div class="blk">Dynamic block<small>1 of 6 &middot; a product they own</small></div><div class="cta">CTA</div><div class="blk">Dynamic block<small>1 of 4 &middot; a complementary service</small></div><div class="hf">Footer copy<small>product-specific</small></div></div></li>
-            <li class="email"><h5>Email 2</h5><div class="wf"><div class="hf">Header image<small>product-specific</small></div><div class="blk">Dynamic block<small>likely upsell</small></div><div class="blk">Dynamic block<small>likely upsell</small></div><div class="blk">Dynamic block<small>likely upsell</small></div><div class="hf">Footer copy<small>product-specific</small></div></div></li>
-            <li class="email"><h5>Email 3</h5><div class="wf"><div class="hf">Header image<small>product-specific</small></div><div class="blk">Dynamic block<small>1 of 6 &middot; a product they own</small></div><div class="cta">CTA</div><div class="blk">Dynamic block<small>1 of 4 &middot; a complementary service</small></div><div class="hf">Footer copy<small>product-specific</small></div></div></li>
-            <li class="email"><h5>Email 4</h5><div class="wf"><div class="hf">Header image<small>product-specific</small></div><div class="blk">Dynamic block<small>a product, or general account review</small></div><div class="hf">Footer copy<small>product-specific</small></div></div></li>
-          </ol>
-          <p class="key"><span class="k-hf">Header and footer</span><span class="k-blk">Dynamic block, chosen per customer</span><span class="k-cta">Call to action</span></p>
-        </figure>
-        <p class="built"><b>Built with</b> Oracle Eloqua, dynamic content, behavioral and firmographic data</p>
+    <div class="work-grid">
+      <article class="pcard feat">
+        <p class="meta">Comcast Business &middot; Hero Digital</p>
+        <h3>Dynamic upsell and cross-sell campaign</h3>
+        <p class="result"><b>~15%</b><span>more customer upgrades</span></p>
+        <p class="tease">A static outreach program became a modular four-email campaign with dynamic content.</p>
+        <button class="open" type="button" data-open="dlg-upsell" aria-haspopup="dialog">View details<i aria-hidden="true"></i><span class="sr-only"> for dynamic upsell and cross-sell campaign</span></button>
       </article>
-
-      <!-- 2 SCORING -->
-      <article class="case" id="scoring" aria-labelledby="p2-h">
-        <header class="case-head">
-          <div><p class="meta">Hero Digital</p><h3 id="p2-h">Lead scoring realignment with sales</h3></div>
-          <p class="result"><b>+15%</b><span>MQL-to-SQL conversion</span></p>
-        </header>
-        <div class="psr">
-          <div><h4>Problem</h4><p>MQL-to-SQL conversion was inconsistent. Sales wasn&rsquo;t qualifying leads the way the scoring model assumed.</p></div>
-          <div><h4>Solution</h4><p>Reviewed the conversion data with sales side by side, found the model was too generous, then tightened thresholds, aligned stage definitions, and simplified nurture paths.</p></div>
-          <div><h4>Result</h4><p>Conversion up 15%. SQL acceptance stabilized and funnel reporting became trustworthy.</p></div>
-        </div>
-        <p class="built"><b>Built with</b> Lead scoring, lifecycle stages, segmentation</p>
+      <article class="pcard">
+        <p class="meta">Hero Digital</p>
+        <h3>Lead scoring realignment with sales</h3>
+        <p class="result"><b>+15%</b><span>MQL-to-SQL conversion</span></p>
+        <p class="tease">Sales and marketing reviewed the data together, and the scoring model got tighter.</p>
+        <button class="open" type="button" data-open="dlg-scoring" aria-haspopup="dialog">View details<i aria-hidden="true"></i><span class="sr-only"> for lead scoring realignment with sales</span></button>
       </article>
-
-      <!-- 3 ACTIVITY TIERS -->
-      <article class="case" id="tiers" aria-labelledby="p3-h">
-        <header class="case-head">
-          <div><p class="meta">Comcast Business &middot; Hero Digital</p><h3 id="p3-h">Send-frequency governance for 14M+ contacts</h3></div>
-          <p class="result"><b>14M+</b><span>contacts, one model</span></p>
-        </header>
-        <div class="psr">
-          <div><h4>Problem</h4><p>Dozens of always-on campaigns each kept their own exclusion rules, so no one could see how much email a contact received in total.</p></div>
-          <div><h4>Solution</h4><p>Six engagement stages with touch caps, separate tiers for prospects and customers, every campaign mapped in, and segment counts modeled before launch.</p></div>
-          <div><h4>Result</h4><p>One auditable system replaced fragile per-campaign logic. It also showed stakeholders how stacking holiday sends of 300K&ndash;600K customers each would hurt the upsell, and one send was cut.</p></div>
-        </div>
-        <figure class="viz" aria-labelledby="v3-cap">
-          <figcaption id="v3-cap">Share of the audience in each stage</figcaption>
-          <ol class="tiers" aria-label="Inactive is the largest stage, followed by Active 2 and Active 1, then Lapsing, Lapsed, and New.">
-            <li><span class="tier-bar" style="--h:16%"></span><span class="lb">New</span></li>
-            <li><span class="tier-bar" style="--h:56%"></span><span class="lb">Active 1</span></li>
-            <li><span class="tier-bar" style="--h:62%"></span><span class="lb">Active 2</span></li>
-            <li><span class="tier-bar" style="--h:36%"></span><span class="lb">Lapsing</span></li>
-            <li><span class="tier-bar" style="--h:30%"></span><span class="lb">Lapsed</span></li>
-            <li><span class="tier-bar" style="--h:100%"></span><span class="lb">Inactive</span></li>
-          </ol>
-          <p class="fine">Illustrative proportions, not actual counts.</p>
-        </figure>
-        <p class="built"><b>Built with</b> Oracle Eloqua, segmentation modeling, suppression logic</p>
+      <article class="pcard">
+        <p class="meta">Comcast Business &middot; Hero Digital</p>
+        <h3>Send-frequency governance for 14M+ contacts</h3>
+        <p class="result"><b>14M+</b><span>contacts, one model</span></p>
+        <p class="tease">One central model now governs how often anyone is emailed.</p>
+        <button class="open" type="button" data-open="dlg-tiers" aria-haspopup="dialog">View details<i aria-hidden="true"></i><span class="sr-only"> for send-frequency governance</span></button>
       </article>
-
-      <!-- 4 DELIVERABILITY -->
-      <article class="case" id="deliverability" aria-labelledby="p4-h">
-        <header class="case-head">
-          <div><p class="meta">Comcast Business &middot; Hero Digital</p><h3 id="p4-h">Deliverability and compliance turnaround</h3></div>
-          <p class="result"><b>+10%</b><span>deliverability in one quarter</span></p>
-        </header>
-        <div class="psr">
-          <div><h4>Problem</h4><p>A client&rsquo;s deliverability was declining, hurting performance and trust in the reporting.</p></div>
-          <div><h4>Solution</h4><p>A full audit, then SPF, DKIM, and DMARC authentication, stronger suppression logic, list-hygiene standards, and QA checkpoints for CAN-SPAM compliance.</p></div>
-          <div><h4>Result</h4><p>Deliverability up 10% within a quarter. Engagement stabilized and confidence in the metrics came back.</p></div>
-        </div>
-        <p class="built"><b>Built with</b> SPF, DKIM, DMARC, suppression logic</p>
+      <article class="pcard">
+        <p class="meta">Comcast Business &middot; Hero Digital</p>
+        <h3>Deliverability and compliance turnaround</h3>
+        <p class="result"><b>+10%</b><span>deliverability in one quarter</span></p>
+        <p class="tease">An audit and proper authentication turned a declining program around.</p>
+        <button class="open" type="button" data-open="dlg-deliv" aria-haspopup="dialog">View details<i aria-hidden="true"></i><span class="sr-only"> for deliverability and compliance turnaround</span></button>
       </article>
-
-      <!-- 5 ONBOARDING -->
-      <article class="case" id="onboarding" aria-labelledby="p5-h">
-        <header class="case-head">
-          <div><p class="meta">Comcast Business &middot; Hero Digital</p><h3 id="p5-h">Customer onboarding redesign</h3></div>
-          <p class="result"><b>1 feed</b><span>replaced many entry points</span></p>
-        </header>
-        <div class="psr">
-          <div><h4>Problem</h4><p>Numerous entry points, some undocumented, and siloed work streams. Messaging was inconsistent and early-stage drop-off was high.</p></div>
-          <div><h4>Solution</h4><p>Consolidated onboarding data into a single-source feed and rebuilt the program in Eloqua so email, CRM lifecycle stages, and internal notifications work as one.</p></div>
-          <div><h4>Result</h4><p>Better early engagement, consistent handoffs, and a program that scales across segments.</p></div>
-        </div>
-        <figure class="viz" aria-labelledby="v5-cap">
-          <figcaption id="v5-cap">From many entry points to one program</figcaption>
-          <ol class="steps">
-            <li class="step"><h5>Before</h5><p>Many entry points, some undocumented</p></li>
-            <li class="step"><h5>Consolidated</h5><p>Single-source data feed</p></li>
-            <li class="step to"><h5>After</h5><p>One Eloqua program: email, CRM stage, notifications</p></li>
-          </ol>
-        </figure>
-        <p class="built"><b>Built with</b> Oracle Eloqua, single-source data feed, CRM lifecycle stages</p>
+      <article class="pcard">
+        <p class="meta">Hero Digital</p>
+        <h3>Secure Eloqua data integration</h3>
+        <p class="result"><b>Secure</b><span>automated data flow</span></p>
+        <p class="tease">A monitored SFTP feed between Eloqua and external systems.</p>
+        <button class="open" type="button" data-open="dlg-sftp" aria-haspopup="dialog">View details<i aria-hidden="true"></i><span class="sr-only"> for secure Eloqua data integration</span></button>
       </article>
     </div>
 
     <div class="more">
       <h3>More work</h3>
       <ul aria-label="More projects">
-        <li class="row"><div><b>Salesforce / Pardot migrations</b><p class="meta">Nurturelabs</p></div><p>Two migrations, with readiness assessments before each cutover.</p><p class="m">0 data loss</p></li>
-        <li class="row"><div><b>Secure Eloqua SFTP integration</b><p class="meta">Hero Digital</p></div><p>Field mapping, encryption, and sync monitoring, built with IT.</p><p class="m">Reliable sync</p></li>
-        <li class="row"><div><b>Lifecycle automation at scale</b><p class="meta">Hero Digital</p></div><p>One framework from a few hundred sends to 200,000+ a day.</p><p class="m">200K+ a day</p></li>
-        <li class="row"><div><b>Martech team and playbooks</b><p class="meta">EBQ</p></div><p>Led six people across 10+ client environments.</p><p class="m">100+ sessions</p></li>
-        <li class="row"><div><b>Zoho migration</b><p class="meta">Freelance</p></div><p>Rebuilt automations and data mapping, and wrote sales training.</p><p class="m">In progress</p></li>
+        <li class="row"><div><b>Platform migrations</b><p class="meta">Nurturelabs and freelance</p></div><p>Two Salesforce and Pardot migrations with readiness assessments, and a Zoho migration in progress.</p><p class="m">0 data loss</p></li>
+        <li class="row"><div><b>Customer onboarding redesign</b><p class="meta">Comcast Business &middot; Hero Digital</p></div><p>Many entry points became one single-source feed and one Eloqua program.</p><p class="m">1 feed</p></li>
+        <li class="row"><div><b>High-volume email and A/B testing</b><p class="meta">Hero Digital</p></div><p>2&ndash;3 campaigns a day to 200K&ndash;1M-contact segments, tested on subject, message, and cadence.</p><p class="m">+12% opens</p></li>
+        <li class="row"><div><b>QBR dashboards and reports</b><p class="meta">TD Ameritrade &middot; Hero Digital</p></div><p>Eloqua program reporting for quarterly business reviews, built in Power BI.</p><p class="m">Power BI</p></li>
+        <li class="row"><div><b>Martech team and playbooks</b><p class="meta">EBQ</p></div><p>Led six people across 10+ client environments and defined the QA standards.</p><p class="m">100+ sessions</p></li>
       </ul>
+      <p class="clients">Clients include Comcast Business, TD Ameritrade, and Lamb Weston.</p>
     </div>
 
-    <div class="cta-band" role="group" aria-labelledby="cta1-h">
-      <h3 id="cta1-h">Have a lifecycle or migration problem to fix?</h3>
-      <a class="btn btn-primary" href="#contact">Let&rsquo;s Talk</a>
-    </div>
+    <!-- DETAIL SHEETS: native dialogs, opened by the cards above -->
+    <dialog class="sheet" id="dlg-upsell" aria-labelledby="dlg-upsell-h"><div class="sheet-in">
+      <header class="sheet-head"><div><p class="meta">Comcast Business &middot; Hero Digital</p><h3 id="dlg-upsell-h">Dynamic upsell and cross-sell campaign</h3></div><button class="close" type="button" data-close>Close</button></header>
+      <p class="result"><b>~15%</b><span>more customer upgrades, 25% average open rate</span></p>
+      <div class="beat"><h4>Problem</h4><p>Existing customers got static-list outreach instead of messages driven by behavior or firmographic signals. That limited expansion revenue.</p></div>
+      <div class="beat"><h4>Solution</h4><ul class="dots">
+        <li>Worked with the data team so behavioral and firmographic data flowed into Eloqua.</li>
+        <li>Built a four-email campaign whose decision logic surfaces the products each customer is most likely to upgrade to.</li>
+        <li>Made it modular, so products and offers can change without disrupting the rest of the workflow.</li>
+        <li>Aligned messaging with Customer Success, gave sales visibility, and owned segmentation, QA, deployment, and analysis.</li>
+      </ul></div>
+      <div class="beat"><h4>Result</h4><p>A 25% average open rate and roughly 15% more customer upgrades, ahead of quarterly engagement targets. Marketing and post-sale teams were better aligned.</p></div>
+      <figure class="viz" aria-labelledby="v1-cap">
+        <figcaption id="v1-cap">How each email was built</figcaption>
+        <ol class="emails">
+          <li class="email"><h5>Email 1</h5><div class="wf"><div class="blk sm">Header image<small>product-specific</small></div><div class="blk">Dynamic block<small>1 of 6 &middot; a product they own</small></div><div class="cta">CTA</div><div class="blk">Dynamic block<small>1 of 4 &middot; a complementary service</small></div><div class="blk sm">Footer copy<small>product-specific</small></div></div></li>
+          <li class="email"><h5>Email 2</h5><div class="wf"><div class="blk sm">Header image<small>product-specific</small></div><div class="blk">Dynamic block<small>likely upsell</small></div><div class="cta">CTA</div><div class="blk">Dynamic block<small>likely upsell</small></div><div class="blk">Dynamic block<small>likely upsell</small></div><div class="cta">CTA</div><div class="blk sm">Footer copy<small>product-specific</small></div></div></li>
+          <li class="email"><h5>Email 3</h5><div class="wf"><div class="blk sm">Header image<small>product-specific</small></div><div class="blk">Dynamic block<small>1 of 6 &middot; a product they own</small></div><div class="cta">CTA</div><div class="blk">Dynamic block<small>1 of 4 &middot; a complementary service</small></div><div class="blk sm">Footer copy<small>product-specific</small></div></div></li>
+          <li class="email"><h5>Email 4</h5><div class="wf"><div class="blk sm">Header image<small>product-specific</small></div><div class="blk">Dynamic block<small>a product, or general account review</small></div><div class="cta">CTA</div><div class="blk sm">Footer copy<small>product-specific</small></div></div></li>
+        </ol>
+        <p class="key"><span>Dynamic block, chosen per customer</span><span class="k-cta">Call to action</span></p>
+      </figure>
+      <p class="built"><b>Built with</b> Oracle Eloqua, dynamic content, behavioral and firmographic data</p>
+    </div></dialog>
+
+    <dialog class="sheet" id="dlg-scoring" aria-labelledby="dlg-scoring-h"><div class="sheet-in">
+      <header class="sheet-head"><div><p class="meta">Hero Digital</p><h3 id="dlg-scoring-h">Lead scoring realignment with sales</h3></div><button class="close" type="button" data-close>Close</button></header>
+      <p class="result"><b>+15%</b><span>MQL-to-SQL conversion</span></p>
+      <div class="beat"><h4>Problem</h4><p>Lifecycle stages looked right on paper, but MQL-to-SQL conversion was inconsistent. Sales wasn&rsquo;t qualifying leads the way the scoring model assumed, and the disagreement over lead quality was creating friction.</p></div>
+      <div class="beat"><h4>Solution</h4><ul class="dots">
+        <li>Asked sales to review the conversion data with me instead of debating whose numbers were right.</li>
+        <li>Found the model was too generous and was inflating early-stage engagement.</li>
+        <li>Tightened scoring thresholds and aligned stage definitions with how sales actually qualifies.</li>
+        <li>Simplified nurture paths that had grown around the old thresholds.</li>
+      </ul></div>
+      <div class="beat"><h4>Result</h4><p>Conversion up 15%. SQL acceptance stabilized over the following quarter and funnel reporting became trustworthy again.</p></div>
+      <p class="built"><b>Built with</b> Lead scoring, lifecycle stages, segmentation</p>
+    </div></dialog>
+
+    <dialog class="sheet" id="dlg-tiers" aria-labelledby="dlg-tiers-h"><div class="sheet-in">
+      <header class="sheet-head"><div><p class="meta">Comcast Business &middot; Hero Digital</p><h3 id="dlg-tiers-h">Send-frequency governance for 14M+ contacts</h3></div><button class="close" type="button" data-close>Close</button></header>
+      <p class="result"><b>14M+</b><span>contacts, one model</span></p>
+      <div class="beat"><h4>Problem</h4><p>Dozens of always-on campaigns each kept their own exclusion rules, so no campaign could see the total volume a contact received. A contact could be excluded from one and still be hit by three others in the same week.</p></div>
+      <div class="beat"><h4>Solution</h4><ul class="dots">
+        <li>Defined six engagement stages, each with its own touch caps.</li>
+        <li>Built separate tier systems for prospects and customers.</li>
+        <li>Mapped every always-on campaign into the framework.</li>
+        <li>Modeled segment counts before launch, then monitored send counts after rollout.</li>
+      </ul></div>
+      <div class="beat"><h4>Result</h4><p>One auditable system replaced fragile per-campaign logic across 14M+ contacts, and new campaigns slot into the framework. It also showed stakeholders how stacking holiday sends of 300K&ndash;600K customers each would hurt the upsell, and one send was cut.</p></div>
+      <figure class="viz" aria-labelledby="v3-cap">
+        <figcaption id="v3-cap">Share of the audience in each stage</figcaption>
+        <ol class="tiers" aria-label="Inactive is the largest stage, followed by Active 2 and Active 1, then Lapsing, Lapsed, and New.">
+          <li><span class="tier-bar" style="--h:16%"></span><span class="lb">New</span></li>
+          <li><span class="tier-bar" style="--h:56%"></span><span class="lb">Active 1</span></li>
+          <li><span class="tier-bar" style="--h:62%"></span><span class="lb">Active 2</span></li>
+          <li><span class="tier-bar" style="--h:36%"></span><span class="lb">Lapsing</span></li>
+          <li><span class="tier-bar" style="--h:30%"></span><span class="lb">Lapsed</span></li>
+          <li><span class="tier-bar" style="--h:100%"></span><span class="lb">Inactive</span></li>
+        </ol>
+        <p class="fine">Illustrative proportions, not actual counts.</p>
+      </figure>
+      <p class="built"><b>Built with</b> Oracle Eloqua, segmentation modeling, suppression logic</p>
+    </div></dialog>
+
+    <dialog class="sheet" id="dlg-deliv" aria-labelledby="dlg-deliv-h"><div class="sheet-in">
+      <header class="sheet-head"><div><p class="meta">Comcast Business &middot; Hero Digital</p><h3 id="dlg-deliv-h">Deliverability and compliance turnaround</h3></div><button class="close" type="button" data-close>Close</button></header>
+      <p class="result"><b>+10%</b><span>deliverability in one quarter</span></p>
+      <div class="beat"><h4>Problem</h4><p>A client&rsquo;s email deliverability was declining. It was hurting campaign performance and undermining confidence in the reporting.</p></div>
+      <div class="beat"><h4>Solution</h4><ul class="dots">
+        <li>Ran a full deliverability audit to find the root cause.</li>
+        <li>Implemented SPF, DKIM, and DMARC authentication.</li>
+        <li>Strengthened suppression logic and formalized list-hygiene standards.</li>
+        <li>Added QA checkpoints to keep sends compliant with CAN-SPAM and internal governance.</li>
+      </ul></div>
+      <div class="beat"><h4>Result</h4><p>Deliverability improved 10% within a quarter. Engagement stabilized, compliance risk dropped, and confidence in the campaign metrics came back.</p></div>
+      <p class="built"><b>Built with</b> SPF, DKIM, DMARC, suppression logic</p>
+    </div></dialog>
+
+    <dialog class="sheet" id="dlg-sftp" aria-labelledby="dlg-sftp-h"><div class="sheet-in">
+      <header class="sheet-head"><div><p class="meta">Hero Digital</p><h3 id="dlg-sftp-h">Secure Eloqua data integration</h3></div><button class="close" type="button" data-close>Close</button></header>
+      <p class="result"><b>Secure</b><span>automated data flow</span></p>
+      <div class="beat"><h4>Problem</h4><p>In a data-sensitive environment, the team needed a secure, reliable way to move data between Eloqua and external systems to support automated lifecycle processing.</p></div>
+      <div class="beat"><h4>Solution</h4><ul class="dots">
+        <li>Worked with IT and engineering to define field mapping, encryption protocols, and validation checks.</li>
+        <li>Built checks to protect data integrity on every import and export.</li>
+        <li>Set up monitoring to catch sync errors early.</li>
+      </ul></div>
+      <div class="beat"><h4>Result</h4><p>Reliable data flow across systems, less manual processing, and stronger governance. That supported more accurate reporting and lifecycle automation.</p></div>
+      <figure class="viz" aria-labelledby="v6-cap">
+        <figcaption id="v6-cap">How the data moves</figcaption>
+        <ol class="steps">
+          <li class="step"><h5>From</h5><p>Eloqua</p></li>
+          <li class="step to"><h5>Secure SFTP</h5><p>Field mapping, encryption, validation checks</p></li>
+          <li class="step"><h5>To</h5><p>External systems</p></li>
+        </ol>
+        <p class="fine">Monitoring catches sync errors early.</p>
+      </figure>
+      <p class="built"><b>Built with</b> Oracle Eloqua, SFTP, field mapping, validation and monitoring</p>
+    </div></dialog>
   </section>
 
   <section class="wrap pad" id="skills" aria-labelledby="skills-h">
     <h2 id="skills-h">Skills</h2>
-    <div class="skills">
-      <div><h3>Lifecycle and demand gen</h3><ul><li>Journey design</li><li>Segmentation</li><li>Behavioral triggers</li><li>Lead scoring</li><li>A/B testing</li><li>Customer marketing</li><li>RevOps alignment</li></ul></div>
-      <div><h3>Platforms</h3><ul><li>Oracle Eloqua</li><li>Pardot</li><li>Salesforce Marketing Cloud</li><li>Salesforce CRM</li><li>Zoho</li><li>HubSpot</li><li>HTML, CSS, JavaScript</li></ul></div>
-      <div><h3>Analytics</h3><ul><li>Tableau</li><li>Power BI</li><li>Google Analytics</li><li>KPI dashboards</li><li>Attribution</li></ul></div>
-      <div><h3>Governance</h3><ul><li>Deliverability</li><li>CAN-SPAM and GDPR</li><li>Data governance</li><li>Campaign QA</li><li>Playbooks and training</li><li>Team leadership</li></ul></div>
-    </div>
+    <dl class="skills">
+      <div><dt>Lifecycle and demand gen</dt><dd><ul><li>Journey design</li><li>Segmentation</li><li>Behavioral triggers</li><li>Lead scoring</li><li>A/B testing</li><li>Customer marketing</li><li>RevOps alignment</li></ul></dd></div>
+      <div><dt>Platforms</dt><dd><ul><li>Oracle Eloqua</li><li>Pardot</li><li>Salesforce Marketing Cloud</li><li>Salesforce CRM</li><li>Zoho</li><li>HubSpot</li><li>HTML, CSS, JavaScript</li></ul></dd></div>
+      <div><dt>Analytics</dt><dd><ul><li>Tableau</li><li>Power BI</li><li>Google Analytics</li><li>KPI dashboards</li><li>Attribution</li></ul></dd></div>
+      <div><dt>Governance</dt><dd><ul><li>Deliverability</li><li>CAN-SPAM and GDPR</li><li>Data governance</li><li>Campaign QA</li><li>Playbooks and training</li><li>Team leadership</li></ul></dd></div>
+    </dl>
   </section>
 
   <section class="wrap pad" id="proof" aria-labelledby="proof-h">
     <h2 id="proof-h">What colleagues say</h2>
-    <div class="quotes">
-      <figure class="quote">
-        <blockquote>&ldquo;He knows Eloqua inside and out and isn&rsquo;t afraid to make recommendations to streamline and improve the overall process. &hellip; He is able to simplify complex technical topics into simple terms for all audiences to understand.&rdquo;</blockquote>
+    <div class="orbs">
+      <figure class="orb">
+        <blockquote>&ldquo;He knows Eloqua inside and out and isn&rsquo;t afraid to make recommendations to streamline and improve the overall process.&rdquo;</blockquote>
         <figcaption><b>Court Fruge</b>Direct manager, 2025</figcaption>
       </figure>
-      <figure class="quote">
+      <figure class="orb">
         <blockquote>&ldquo;Harrison is extremely competent at marketing automation and a pleasure to work with. He does a great job thinking strategically about requests, and is a quick learner.&rdquo;</blockquote>
         <figcaption><b>Mariana &ldquo;Emmy&rdquo; Silak</b>Senior colleague, 2020</figcaption>
       </figure>
-      <figure class="quote">
-        <blockquote>&ldquo;Harrison is the best. He knows his way around marketing automation, sheds light on things you might have missed, and is excited to take on any new challenge or annoying request that you throw at him.&rdquo;</blockquote>
+      <figure class="orb">
+        <blockquote>&ldquo;Harrison is the best. He knows his way around marketing automation, sheds light on things you might have missed, and is excited to take on any new challenge&hellip;&rdquo;</blockquote>
         <figcaption><b>Autumn Righino, PMP</b>Teammate, 2020</figcaption>
       </figure>
     </div>
     <p class="src">Excerpts from <a href="https://www.linkedin.com/in/harrison-holt">LinkedIn recommendations</a>.</p>
-
-    <div class="certs">
-      <h3>Certifications</h3>
-      <ul>
-        <li><b>Marketing Cloud Account Engagement (Pardot) Consultant</b><span>Salesforce</span></li>
-        <li><b>Sales Hub Software</b><span>HubSpot Academy</span></li>
-        <li><b>Integrating With HubSpot I: Foundations</b><span>HubSpot Academy</span></li>
-        <li><b>Eloqua Implementation Specialist</b><span>Oracle, in progress</span></li>
-      </ul>
-    </div>
   </section>
 
   <section class="wrap pad" id="resume" aria-labelledby="resume-h">
     <h2 id="resume-h">Resume</h2>
-    <ol class="tl">
-      <li><span class="when">Nov 2025 &ndash; Present</span><span><b>Marketing Operations Consultant</b><span class="co">Freelance</span></span><span class="imp">Zoho migration</span></li>
-      <li><span class="when">Jun 2022 &ndash; Dec 2024</span><span><b>Senior Marketing Automation Specialist</b><span class="co">Hero Digital</span></span><span class="imp">+15% MQL-to-SQL, +10% deliverability</span></li>
-      <li><span class="when">Jun 2019 &ndash; Jun 2022</span><span><b>Marketing Automation Specialist</b><span class="co">Hero Digital</span></span><span class="imp">14M+ contacts, +12% open rate</span></li>
-      <li><span class="when">May 2018 &ndash; May 2019</span><span><b>Marketing Operations Specialist</b><span class="co">Nurturelabs</span></span><span class="imp">2 migrations, zero data loss</span></li>
-      <li><span class="when">Feb 2016 &ndash; Apr 2018</span><span><b>Martech Team Lead</b><span class="co">EBQ</span></span><span class="imp">6-person team, 100+ enablement sessions</span></li>
-    </ol>
-    <p class="edu">B.S., Mass Communication &amp; Public Relations, Cum Laude. Texas State University, 2015.</p>
-    <p class="dl"><a class="btn btn-primary" href="assets/Harrison-Holt-Resume.pdf" download>Download Resume</a></p>
+    <div class="resume-grid">
+      <div class="side">
+        <a class="btn btn-primary" href="assets/Harrison-Holt-Resume.pdf" download>Download Resume</a>
+        <p class="edu"><b>B.S., Mass Communication &amp; Public Relations</b>Texas State University, Cum Laude, 2015</p>
+        <h3>Certifications</h3>
+        <ul class="certs">
+          <li><b>Marketing Cloud Account Engagement (Pardot) Consultant</b><span>Salesforce</span></li>
+          <li><b>Sales Hub Software</b><span>HubSpot Academy</span></li>
+          <li><b>Integrating With HubSpot I: Foundations</b><span>HubSpot Academy</span></li>
+          <li><b>Eloqua Implementation Specialist</b><span>Oracle, in progress</span></li>
+        </ul>
+      </div>
+      <ol class="tl">
+        <li><span class="when">2025 &ndash; Present</span><b>Marketing Operations Consultant</b><span class="co">Freelance</span><span class="imp">Zoho migration</span></li>
+        <li><span class="when">2022 &ndash; 2024</span><b>Senior Marketing Automation Specialist</b><span class="co">Hero Digital</span><span class="imp">+15% MQL-to-SQL, +10% deliverability</span></li>
+        <li><span class="when">2019 &ndash; 2022</span><b>Marketing Automation Specialist</b><span class="co">Hero Digital</span><span class="imp">14M+ contacts, +12% open rate</span></li>
+        <li><span class="when">2018 &ndash; 2019</span><b>Marketing Operations Specialist</b><span class="co">Nurturelabs</span><span class="imp">2 migrations, zero data loss</span></li>
+        <li><span class="when">2016 &ndash; 2018</span><b>Martech Team Lead</b><span class="co">EBQ</span><span class="imp">6-person team, 100+ enablement sessions</span></li>
+      </ol>
+    </div>
   </section>
 </main>
 
@@ -536,8 +569,26 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
 </footer>
 
 <script>
+/* DETAIL SHEETS: each project card opens a native dialog. Escape, the Close button, or a click outside closes it. */
 (function(){
-  /* CONTACT FORM: create a free access key at web3forms.com (it is emailed to you), then paste it here. */
+  var last=null;
+  document.querySelectorAll('[data-open]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var d=document.getElementById(b.getAttribute('data-open'));
+      if(!d)return;
+      last=b;
+      if(d.showModal)d.showModal();else d.setAttribute('open','');
+    });
+  });
+  document.querySelectorAll('dialog.sheet').forEach(function(d){
+    d.addEventListener('click',function(e){if(e.target===d)d.close()});
+    d.addEventListener('close',function(){if(last)last.focus()});
+    d.querySelectorAll('[data-close]').forEach(function(c){c.addEventListener('click',function(){d.close()})});
+  });
+})();
+
+/* CONTACT FORM: create a free access key at web3forms.com (it is emailed to you), then paste it here. */
+(function(){
   var KEY='YOUR_WEB3FORMS_ACCESS_KEY';
   var PREVIEW=false;
 
