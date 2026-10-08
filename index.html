@@ -196,38 +196,21 @@ dialog.sheet[open]::backdrop{animation:fadeIn .3s ease}
   .tiers span.lb{order:0;font-size:.85rem;line-height:1.25}
 }
 
-/* three-step flow */
-.steps{display:grid;gap:var(--s3)}
-@media(min-width:640px){.steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5)}}
-.step{position:relative;padding:var(--s4);background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r)}
-.step h5{margin:0 0 var(--s1);font-size:var(--fs-sm);font-weight:700;color:var(--muted)}
-.step p{color:var(--fg)}
-.step.to{border-color:var(--olive)}
-.step:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:-.5rem;width:.8rem;height:.8rem;background:var(--surface-2);border-right:2px solid var(--fg-2);border-bottom:2px solid var(--fg-2);transform:translateX(-50%) rotate(45deg)}
-@media(min-width:640px){.step:not(:last-child)::after{left:auto;right:-.95rem;top:50%;bottom:auto;transform:translateY(-50%) rotate(-45deg)}}
+/* by-the-numbers */
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)}
+@media(min-width:640px){.facts{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.facts li{display:flex;flex-direction:column;gap:.2rem}
+.facts b{font-size:var(--fs-num);font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--olive);font-variant-numeric:tabular-nums}
+.facts span{font-size:var(--fs-sm);color:var(--fg-2)}
 
-/* more work */
-.more{margin-top:var(--s6)}
-.more h3{margin-bottom:var(--s3);font-size:var(--fs-lg)}
-.row{display:grid;gap:var(--s1) var(--s5);padding-block:var(--s4);border-top:1px solid var(--line)}
-.row:last-of-type{border-bottom:1px solid var(--line)}
-@media(min-width:760px){.row{grid-template-columns:minmax(0,5fr) minmax(0,6fr) 9rem;align-items:baseline}}
-.row b{font-weight:700}
-.row .meta{margin-top:.1rem}
-.row p{color:var(--fg-2)}
-.row .m{font-weight:800;color:var(--olive);font-variant-numeric:tabular-nums}
-@media(min-width:760px){.row .m{text-align:right}}
-.clients{margin-top:var(--s4);font-size:var(--fs-sm);color:var(--muted)}
+.clients{margin-top:var(--s5);font-size:var(--fs-sm);color:var(--muted)}
 
-/* skills: platform spotlight, then quieter groups */
-.spot h3,.minor h3{margin-bottom:var(--s3);font-size:var(--fs-sm);font-weight:700;letter-spacing:0;color:var(--olive)}
-.spot-list{display:flex;flex-wrap:wrap;gap:.35rem 1.6rem}
-.spot-list li{display:flex;align-items:center;gap:.55rem;font-size:clamp(1.5rem,3.4vw,2.5rem);font-weight:800;line-height:1.2;letter-spacing:-.02em}
-.spot-list li::before{content:"";flex:none;width:.34em;height:.34em;border-radius:50%;background:var(--olive)}
-.minor{display:grid;gap:var(--s5);margin-top:var(--s6);padding-top:var(--s5);border-top:1px solid var(--line)}
-@media(min-width:900px){.minor{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s6)}}
-.plain{display:flex;flex-wrap:wrap;gap:.15rem .4rem;color:var(--fg-2)}
-.plain li:not(:last-child)::after{content:","}
+/* skills */
+.skillbox{display:grid;gap:var(--s5) var(--s7);padding:var(--s5);background:var(--surface);border-radius:var(--r)}
+@media(min-width:760px){.skillbox{grid-template-columns:repeat(2,minmax(0,1fr));padding:var(--s6)}}
+.skillbox h3{margin-bottom:var(--s3);font-size:var(--fs-sm);font-weight:700;letter-spacing:0;color:var(--olive)}
+.chips{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.chips li{padding:.4rem .9rem;border:1px solid var(--line-2);border-radius:999px;background:var(--surface-2);font-size:.95rem;line-height:1.3;color:var(--fg)}
 
 /* testimonials */
 .orbs{display:grid;gap:var(--s7);justify-items:center;padding-block:var(--s2)}
@@ -353,25 +336,15 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
         <button class="open" type="button" data-open="dlg-deliv" aria-haspopup="dialog">View details<i aria-hidden="true"></i><span class="sr-only"> for deliverability and compliance turnaround</span></button>
       </article>
       <article class="pcard">
-        <p class="meta">Hero Digital</p>
-        <h3>Secure Eloqua data integration</h3>
-        <p class="result"><b>Secure</b><span>automated data flow</span></p>
-        <p class="tease">A monitored SFTP feed between Eloqua and external systems.</p>
-        <button class="open" type="button" data-open="dlg-sftp" aria-haspopup="dialog">View details<i aria-hidden="true"></i><span class="sr-only"> for secure Eloqua data integration</span></button>
+        <p class="meta">EBQ</p>
+        <h3>Marketing systems team and client enablement</h3>
+        <p class="result"><b>100+</b><span>client enablement sessions</span></p>
+        <p class="tease">A six-person team and a repeatable enablement program across 10+ client environments.</p>
+        <button class="open" type="button" data-open="dlg-team" aria-haspopup="dialog">View details<i aria-hidden="true"></i><span class="sr-only"> for marketing systems team and client enablement</span></button>
       </article>
     </div>
 
-    <div class="more">
-      <h3>More work</h3>
-      <ul aria-label="More projects">
-        <li class="row"><div><b>Platform migrations</b><p class="meta">Nurturelabs and freelance</p></div><p>Two Salesforce and Pardot migrations with readiness assessments, and a Zoho migration in progress.</p><p class="m">0 data loss</p></li>
-        <li class="row"><div><b>Customer onboarding redesign</b><p class="meta">Comcast Business &middot; Hero Digital</p></div><p>Many entry points became one single-source feed and one Eloqua program.</p><p class="m">1 feed</p></li>
-        <li class="row"><div><b>High-volume email and A/B testing</b><p class="meta">Hero Digital</p></div><p>2&ndash;3 campaigns a day to 200K&ndash;1M-contact segments, tested on subject, message, and cadence.</p><p class="m">+12% opens</p></li>
-        <li class="row"><div><b>QBR dashboards and reports</b><p class="meta">TD Ameritrade &middot; Hero Digital</p></div><p>Eloqua program reporting for quarterly business reviews, built in Power BI.</p><p class="m">Power BI</p></li>
-        <li class="row"><div><b>Martech team and playbooks</b><p class="meta">EBQ</p></div><p>Led six people across 10+ client environments and defined the QA standards.</p><p class="m">100+ sessions</p></li>
-      </ul>
-      <p class="clients">Clients include Comcast Business, TD Ameritrade, and Lamb Weston.</p>
-    </div>
+    <p class="clients">Clients include Comcast Business, TD Ameritrade, and Lamb Weston.</p>
 
     <!-- DETAIL SHEETS: native dialogs, opened by the cards above -->
     <dialog class="sheet" id="dlg-upsell" aria-labelledby="dlg-upsell-h"><div class="sheet-in">
@@ -452,39 +425,37 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
       <p class="built"><b>Built with</b> SPF, DKIM, DMARC, suppression logic</p>
     </div></dialog>
 
-    <dialog class="sheet" id="dlg-sftp" aria-labelledby="dlg-sftp-h"><div class="sheet-in">
-      <header class="sheet-head"><div><p class="meta">Hero Digital</p><h3 id="dlg-sftp-h">Secure Eloqua data integration</h3></div><button class="close" type="button" data-close>Close</button></header>
-      <p class="result"><b>Secure</b><span>automated data flow</span></p>
-      <div class="beat"><h4>Problem</h4><p>In a data-sensitive environment, the team needed a secure, reliable way to move data between Eloqua and external systems to support automated lifecycle processing.</p></div>
+    <dialog class="sheet" id="dlg-team" aria-labelledby="dlg-team-h"><div class="sheet-in">
+      <header class="sheet-head"><div><p class="meta">EBQ</p><h3 id="dlg-team-h">Marketing systems team and client enablement</h3></div><button class="close" type="button" data-close>Close</button></header>
+      <p class="result"><b>100+</b><span>client enablement sessions</span></p>
+      <div class="beat"><h4>Problem</h4><p>Clients running 10+ concurrent marketing platform environments needed their teams to adopt the tools and run them consistently.</p></div>
       <div class="beat"><h4>Solution</h4><ul class="dots">
-        <li>Worked with IT and engineering to define field mapping, encryption protocols, and validation checks.</li>
-        <li>Built checks to protect data integrity on every import and export.</li>
-        <li>Set up monitoring to catch sync errors early.</li>
+        <li>Led a six-person marketing systems team covering CRM implementations and Pardot automation architecture.</li>
+        <li>Delivered 100+ enablement sessions for client teams of three to twelve people.</li>
+        <li>Defined the QA processes and operational standards used across every client environment.</li>
+        <li>Turned onboarding documentation and training into client platform playbooks.</li>
       </ul></div>
-      <div class="beat"><h4>Result</h4><p>Reliable data flow across systems, less manual processing, and stronger governance. That supported more accurate reporting and lifecycle automation.</p></div>
-      <figure class="viz" aria-labelledby="v6-cap">
-        <figcaption id="v6-cap">How the data moves</figcaption>
-        <ol class="steps">
-          <li class="step"><h5>From</h5><p>Eloqua</p></li>
-          <li class="step to"><h5>Secure SFTP</h5><p>Field mapping, encryption, validation checks</p></li>
-          <li class="step"><h5>To</h5><p>External systems</p></li>
-        </ol>
-        <p class="fine">Monitoring catches sync errors early.</p>
+      <div class="beat"><h4>Result</h4><p>Stronger platform adoption and consistency across 10+ concurrent client environments, with repeatable implementation and QA processes.</p></div>
+      <figure class="viz" aria-labelledby="v7-cap">
+        <figcaption id="v7-cap">By the numbers</figcaption>
+        <ul class="facts">
+          <li><b>6</b><span>people on the systems team</span></li>
+          <li><b>10+</b><span>client environments at once</span></li>
+          <li><b>100+</b><span>enablement sessions</span></li>
+          <li><b>3&ndash;12</b><span>people per client team</span></li>
+        </ul>
       </figure>
-      <p class="built"><b>Built with</b> Oracle Eloqua, SFTP, field mapping, validation and monitoring</p>
+      <p class="built"><b>Built with</b> Pardot, CRM implementations, QA standards, training and documentation</p>
     </div></dialog>
   </section>
 
   <section class="wrap pad" id="skills" aria-labelledby="skills-h">
     <h2 id="skills-h">Skills</h2>
-    <div class="spot">
-      <h3>Platforms</h3>
-      <ul class="spot-list"><li>Oracle Eloqua</li><li>Pardot</li><li>Salesforce Marketing Cloud</li><li>Salesforce CRM</li><li>Zoho</li><li>HubSpot</li></ul>
-    </div>
-    <div class="minor">
-      <div><h3>Lifecycle and demand gen</h3><ul class="plain"><li>Journey design</li><li>Segmentation</li><li>Behavioral triggers</li><li>Lead scoring</li><li>A/B testing</li><li>Customer marketing</li><li>RevOps alignment</li></ul></div>
-      <div><h3>Analytics</h3><ul class="plain"><li>Tableau</li><li>Power BI</li><li>Google Analytics</li><li>KPI dashboards</li><li>Attribution</li></ul></div>
-      <div><h3>Governance and enablement</h3><ul class="plain"><li>Deliverability</li><li>CAN-SPAM and GDPR</li><li>Data governance</li><li>Campaign QA</li><li>HTML, CSS, JavaScript</li><li>Playbooks and training</li><li>Team leadership</li></ul></div>
+    <div class="skillbox">
+      <div><h3>Platforms</h3><ul class="chips"><li>Oracle Eloqua</li><li>Pardot</li><li>Salesforce Marketing Cloud</li><li>Salesforce CRM</li><li>Zoho</li><li>HubSpot</li></ul></div>
+      <div><h3>Lifecycle and demand gen</h3><ul class="chips"><li>Journey design</li><li>Segmentation</li><li>Behavioral triggers</li><li>Lead scoring</li><li>A/B testing</li><li>Customer marketing</li><li>RevOps alignment</li></ul></div>
+      <div><h3>Analytics</h3><ul class="chips"><li>Tableau</li><li>Power BI</li><li>Google Analytics</li><li>KPI dashboards</li><li>Attribution</li></ul></div>
+      <div><h3>Governance and enablement</h3><ul class="chips"><li>Deliverability</li><li>CAN-SPAM and GDPR</li><li>Data governance</li><li>Campaign QA</li><li>HTML, CSS, JavaScript</li><li>Playbooks and training</li><li>Team leadership</li></ul></div>
     </div>
   </section>
 
