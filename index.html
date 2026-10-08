@@ -205,15 +205,13 @@ dialog.sheet[open]::backdrop{animation:fadeIn .3s ease}
 
 .clients{margin-top:var(--s5);font-size:var(--fs-sm);color:var(--muted)}
 
-/* skills */
-.skillbox{display:grid;gap:var(--s5) var(--s7);padding:var(--s5);background:var(--surface);border-radius:var(--r)}
-@media(min-width:760px){.skillbox{grid-template-columns:repeat(2,minmax(0,1fr));padding:var(--s6)}}
-.skillbox h3{margin-bottom:var(--s3);font-size:var(--fs-sm);font-weight:700;letter-spacing:0;color:var(--olive)}
-.chips{display:flex;flex-wrap:wrap;gap:var(--s2)}
-.chips li{padding:.4rem .9rem;border:1px solid var(--line-2);border-radius:999px;background:var(--surface-2);font-size:.95rem;line-height:1.3;color:var(--fg)}
-.skillbox .wide{grid-column:1/-1}
-.chips.certs li{display:flex;flex-wrap:wrap;align-items:baseline;gap:.1rem .6rem;border-color:var(--olive);border-radius:14px}
-.chips.certs span{font-size:var(--fs-sm);color:var(--muted)}
+/* skills and certifications: a table with thin grid lines */
+.skilltable{display:grid;gap:1px;margin:0;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;font-size:var(--fs-sm);line-height:1.65}
+@media(min-width:760px){.skilltable{grid-template-columns:repeat(2,minmax(0,1fr))}.skilltable .wide{grid-column:1/-1}}
+.skilltable>div{padding:var(--s4) var(--s5);background:var(--surface)}
+.skilltable dt,.skilltable dd{display:inline;margin:0}
+.skilltable dt{font-weight:700;color:var(--olive)}
+.skilltable dd{color:var(--fg-2)}
 
 /* testimonials */
 .orbs{display:grid;gap:var(--s7);justify-items:center;padding-block:var(--s2)}
@@ -445,18 +443,13 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
 
   <section class="wrap pad" id="skills" aria-labelledby="skills-h">
     <h2 id="skills-h">Skills and certifications</h2>
-    <div class="skillbox">
-      <div><h3>Platforms</h3><ul class="chips"><li>Oracle Eloqua</li><li>Pardot</li><li>Salesforce Marketing Cloud</li><li>Salesforce CRM</li><li>Zoho</li><li>HubSpot</li></ul></div>
-      <div><h3>Lifecycle and demand gen</h3><ul class="chips"><li>Journey design</li><li>Segmentation</li><li>Behavioral triggers</li><li>Lead scoring</li><li>A/B testing</li><li>Customer marketing</li><li>RevOps alignment</li></ul></div>
-      <div><h3>Analytics</h3><ul class="chips"><li>Tableau</li><li>Power BI</li><li>Google Analytics</li><li>KPI dashboards</li><li>Attribution</li></ul></div>
-      <div><h3>Governance and enablement</h3><ul class="chips"><li>Deliverability</li><li>CAN-SPAM and GDPR</li><li>Data governance</li><li>Campaign QA</li><li>HTML, CSS, JavaScript</li><li>Playbooks and training</li><li>Team leadership</li></ul></div>
-      <div class="wide"><h3>Certifications</h3><ul class="chips certs">
-        <li>Marketing Cloud Account Engagement (Pardot) Consultant<span>Salesforce</span></li>
-        <li>Sales Hub Software<span>HubSpot Academy</span></li>
-        <li>Integrating With HubSpot I: Foundations<span>HubSpot Academy</span></li>
-        <li>Eloqua Implementation Specialist<span>Oracle, in progress</span></li>
-      </ul></div>
-    </div>
+    <dl class="skilltable">
+      <div><dt>Platforms:</dt> <dd>Oracle Eloqua, Pardot, Salesforce Marketing Cloud, Salesforce CRM, Zoho, HubSpot</dd></div>
+      <div><dt>Lifecycle and demand gen:</dt> <dd>Journey design, segmentation, behavioral triggers, lead scoring, A/B testing, customer marketing, RevOps alignment</dd></div>
+      <div><dt>Analytics:</dt> <dd>Tableau, Power BI, Google Analytics, KPI dashboards, attribution</dd></div>
+      <div><dt>Governance and enablement:</dt> <dd>Deliverability, CAN-SPAM and GDPR, data governance, campaign QA, HTML/CSS/JavaScript, playbooks and training, team leadership</dd></div>
+      <div class="wide"><dt>Certifications:</dt> <dd>Marketing Cloud Account Engagement (Pardot) Consultant, Salesforce; Sales Hub Software, HubSpot Academy; Integrating With HubSpot I: Foundations, HubSpot Academy; Eloqua Implementation Specialist, Oracle (in progress)</dd></div>
+    </dl>
   </section>
 
   <section class="wrap pad" id="proof" aria-labelledby="proof-h">
