@@ -25,7 +25,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebSite","@id":"https://harrisondholt.github.io/portfolio/#site","url":"https://harrisondholt.github.io/portfolio/","name":"Harrison Holt","inLanguage":"en-US"},
-{"@type":"Person","@id":"https://harrisondholt.github.io/portfolio/#person","name":"Harrison Holt","jobTitle":"Senior Marketing Operations & Automation Professional","url":"https://harrisondholt.github.io/portfolio/","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX","addressCountry":"US"},"sameAs":["https://www.linkedin.com/in/harrison-holt","https://github.com/harrisondholt"],"knowsAbout":["Marketing operations","Marketing automation","Lifecycle marketing","Lead scoring","Email deliverability","Oracle Eloqua","Salesforce Account Engagement","Salesforce Marketing Cloud","Zoho","HubSpot","Tableau","Power BI","Google Analytics"],"alumniOf":{"@type":"CollegeOrUniversity","name":"Texas State University"}}
+{"@type":"Person","@id":"https://harrisondholt.github.io/portfolio/#person","name":"Harrison Holt","jobTitle":"Senior Marketing Operations & Automation Professional","url":"https://harrisondholt.github.io/portfolio/","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX","addressCountry":"US"},"sameAs":["https://www.linkedin.com/in/harrison-holt","https://github.com/harrisondholt"],"knowsAbout":["Marketing operations","Marketing automation","Lifecycle marketing","Lead scoring","Email deliverability","Oracle Eloqua","Salesforce Account Engagement","Salesforce Marketing Cloud","Zoho","HubSpot","Tableau","Power BI","Google Analytics"]}
 ]}
 </script>
 <!-- Analytics (cookieless, free): create a Cloudflare Web Analytics site, paste the token, then remove the comment markers.
@@ -211,6 +211,9 @@ dialog.sheet[open]::backdrop{animation:fadeIn .3s ease}
 .skillbox h3{margin-bottom:var(--s3);font-size:var(--fs-sm);font-weight:700;letter-spacing:0;color:var(--olive)}
 .chips{display:flex;flex-wrap:wrap;gap:var(--s2)}
 .chips li{padding:.4rem .9rem;border:1px solid var(--line-2);border-radius:999px;background:var(--surface-2);font-size:.95rem;line-height:1.3;color:var(--fg)}
+.skillbox .wide{grid-column:1/-1}
+.chips.certs li{display:flex;flex-wrap:wrap;align-items:baseline;gap:.1rem .6rem;border-color:var(--olive);border-radius:14px}
+.chips.certs span{font-size:var(--fs-sm);color:var(--muted)}
 
 /* testimonials */
 .orbs{display:grid;gap:var(--s7);justify-items:center;padding-block:var(--s2)}
@@ -222,17 +225,6 @@ dialog.sheet[open]::backdrop{animation:fadeIn .3s ease}
 .orb figcaption b{display:block;color:var(--fg)}
 .src{margin-top:var(--s5);font-size:var(--fs-sm);color:var(--muted)}
 .src a{color:var(--olive)}
-
-/* resume and certifications */
-.resume-grid{display:grid;gap:var(--s5)}
-@media(min-width:900px){.resume-grid{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:var(--s6);align-items:start}}
-.side .edu{margin-top:var(--s5);font-size:var(--fs-sm);color:var(--muted)}
-.side .edu b{display:block;color:var(--fg-2);font-weight:600}
-.certs{display:grid;gap:var(--s3)}
-@media(min-width:640px){.certs{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.certs li{display:flex;flex-direction:column;gap:.2rem;padding:var(--s4);background:var(--surface);border-radius:var(--r)}
-.certs b{font-weight:700;line-height:1.3}
-.certs span{font-size:var(--fs-sm);color:var(--muted)}
 
 /* contact */
 footer{margin-top:var(--s7);background:var(--surface)}
@@ -250,12 +242,14 @@ label{font-weight:700;font-size:.95rem}
 input[type="text"],input[type="email"],textarea{width:100%;padding:.8rem 1rem;border:1px solid var(--line-2);border-radius:var(--r);background:var(--bg);color:var(--fg);font:400 1rem/1.4 var(--font)}
 input:hover,textarea:hover{border-color:var(--muted)}
 input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay)}
+.actions{display:flex;flex-wrap:wrap;gap:var(--s3)}
 .err{color:var(--err);font-size:.9rem}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .ok,.fail{padding:var(--s5);border-radius:var(--r)}
 .ok{border:1px solid var(--olive);background:var(--olive-soft)}
 .fail{border:1px solid var(--clay)}
 .ok h3,.fail h3{margin-bottom:var(--s2);font-size:1.4rem}
+.ok .btn{margin-top:var(--s4)}
 .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s2);padding-block:var(--s5);border-top:1px solid var(--line);font-size:var(--fs-sm);color:var(--muted)}
 </style>
 <noscript><style>dialog.sheet{display:block;position:static;width:auto;max-height:none;margin:var(--s5) 0;animation:none}.open,.close{display:none}</style></noscript>
@@ -271,7 +265,7 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
         <li><a href="#work">Work</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#proof">Testimonials</a></li>
-        <li><a href="#resume">Resume</a></li>
+        <li><a href="assets/Harrison-Holt-Resume.pdf" target="_blank" rel="noopener">Resume<span class="sr-only"> (PDF, opens in a new tab)</span></a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -450,12 +444,18 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
   </section>
 
   <section class="wrap pad" id="skills" aria-labelledby="skills-h">
-    <h2 id="skills-h">Skills</h2>
+    <h2 id="skills-h">Skills and certifications</h2>
     <div class="skillbox">
       <div><h3>Platforms</h3><ul class="chips"><li>Oracle Eloqua</li><li>Pardot</li><li>Salesforce Marketing Cloud</li><li>Salesforce CRM</li><li>Zoho</li><li>HubSpot</li></ul></div>
       <div><h3>Lifecycle and demand gen</h3><ul class="chips"><li>Journey design</li><li>Segmentation</li><li>Behavioral triggers</li><li>Lead scoring</li><li>A/B testing</li><li>Customer marketing</li><li>RevOps alignment</li></ul></div>
       <div><h3>Analytics</h3><ul class="chips"><li>Tableau</li><li>Power BI</li><li>Google Analytics</li><li>KPI dashboards</li><li>Attribution</li></ul></div>
       <div><h3>Governance and enablement</h3><ul class="chips"><li>Deliverability</li><li>CAN-SPAM and GDPR</li><li>Data governance</li><li>Campaign QA</li><li>HTML, CSS, JavaScript</li><li>Playbooks and training</li><li>Team leadership</li></ul></div>
+      <div class="wide"><h3>Certifications</h3><ul class="chips certs">
+        <li>Marketing Cloud Account Engagement (Pardot) Consultant<span>Salesforce</span></li>
+        <li>Sales Hub Software<span>HubSpot Academy</span></li>
+        <li>Integrating With HubSpot I: Foundations<span>HubSpot Academy</span></li>
+        <li>Eloqua Implementation Specialist<span>Oracle, in progress</span></li>
+      </ul></div>
     </div>
   </section>
 
@@ -477,22 +477,6 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
     </div>
     <p class="src">Excerpts from <a href="https://www.linkedin.com/in/harrison-holt">LinkedIn recommendations</a>.</p>
   </section>
-
-  <section class="wrap pad" id="resume" aria-labelledby="resume-h">
-    <h2 id="resume-h">Resume and certifications</h2>
-    <div class="resume-grid">
-      <div class="side">
-        <a class="btn btn-primary" href="assets/Harrison-Holt-Resume.pdf" download>Download Resume</a>
-        <p class="edu"><b>B.S., Mass Communication &amp; Public Relations</b>Texas State University, Cum Laude, 2015</p>
-      </div>
-      <ul class="certs" aria-label="Certifications">
-        <li><b>Marketing Cloud Account Engagement (Pardot) Consultant</b><span>Salesforce</span></li>
-        <li><b>Sales Hub Software</b><span>HubSpot Academy</span></li>
-        <li><b>Integrating With HubSpot I: Foundations</b><span>HubSpot Academy</span></li>
-        <li><b>Eloqua Implementation Specialist</b><span>Oracle, in progress</span></li>
-      </ul>
-    </div>
-  </section>
 </main>
 
 <footer id="contact">
@@ -512,12 +496,13 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
         <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-err"><p class="err" id="email-err" hidden>Enter a valid email address.</p></div>
         <div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="5" required aria-describedby="message-err"></textarea><p class="err" id="message-err" hidden>Add a short message.</p></div>
         <input class="hp" id="botcheck" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn btn-primary" id="send" type="submit">Send message</button>
+        <div class="actions"><button class="btn btn-primary" id="send" type="submit">Send message</button><a class="btn btn-ghost" href="assets/Harrison-Holt-Resume.pdf" download>Download Resume</a></div>
         <noscript><p class="fine">The form needs JavaScript. Email harrisonholt@outlook.com instead.</p></noscript>
       </form>
       <div class="ok" id="form-ok" tabindex="-1" role="status" hidden>
         <h3>Thanks, <span id="ok-name"></span>. Your message is in.</h3>
         <p>I reply within 1 business day.</p>
+        <a class="btn btn-ghost" href="assets/Harrison-Holt-Resume.pdf" download>Download Resume</a>
       </div>
       <div class="fail" id="form-fail" tabindex="-1" role="alert" hidden>
         <h3>That didn&rsquo;t send.</h3>
