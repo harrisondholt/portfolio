@@ -117,7 +117,6 @@ h1 em{font-style:normal;color:var(--olive)}
 /* sections */
 section.pad{padding-block:var(--s7) 0}
 h2{font-size:var(--fs-h2);margin-bottom:var(--s5)}
-.hint{margin:calc(-1*var(--s4)) 0 var(--s5);color:var(--muted)}
 .meta{font-size:var(--fs-sm);color:var(--teal)}
 
 /* shared result number */
@@ -240,18 +239,26 @@ dialog.sheet[open]::backdrop{animation:fadeIn .3s ease}
 .certs b{font-size:1rem;font-weight:700;line-height:1.35;color:var(--fg)}
 .st{font-size:.8rem;color:var(--muted)}
 
-/* testimonials: the quote and the person's details sit inside the circle */
+/* testimonials: quote and details inside the circle. Everything scales with the circle (container units),
+   so the line breaks, and the margin to the edge, are identical at every screen width. */
 .orbs{display:grid;gap:var(--s7);justify-items:center;padding-block:var(--s2)}
-@media(min-width:1100px){.orbs{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4);align-items:start}.orb:nth-child(2){margin-top:var(--s7)}}
-.orb{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s3);width:min(100%,350px);aspect-ratio:1;padding:1.9rem 2.4rem;border-radius:50%;text-align:center;background:radial-gradient(circle at 30% 22%,var(--surface-2),var(--surface) 72%)}
+@media(min-width:1160px){.orbs{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4);align-items:start}.orb:nth-child(2){margin-top:var(--s7)}}
+.orb{position:relative;container-type:inline-size;display:grid;place-items:center;width:min(100%,350px);aspect-ratio:1;border-radius:50%;text-align:center;background:radial-gradient(circle at 30% 22%,var(--surface-2),var(--surface) 72%)}
 .orb::before{content:"";position:absolute;inset:-8px;border:1px solid var(--teal);border-radius:50%;opacity:.5;pointer-events:none}
+.orb-in{display:flex;flex-direction:column;align-items:center;gap:.85rem;width:100%;padding-inline:2.4rem}
 .orb blockquote{font-size:.9rem;line-height:1.4}
 .orb figcaption{display:flex;flex-direction:column;gap:.1rem;font-size:.82rem;line-height:1.3}
-.orb figcaption::before{content:"";display:block;width:2rem;height:2px;margin:0 auto var(--s2);background:var(--teal)}
+.orb figcaption::before{content:"";display:block;width:2rem;height:2px;margin:0 auto .5rem;background:var(--teal)}
 .orb figcaption b{font-size:.95rem;color:var(--fg)}
 .orb .role{color:var(--fg-2)}
 .orb .rel{color:var(--muted)}
-@media(max-width:380px){.orb{padding:1.4rem 1.9rem;gap:var(--s2)}.orb blockquote{font-size:.82rem}.orb figcaption{font-size:.78rem}}
+@supports (width:1cqi){
+  .orb-in{gap:3.6cqi;padding-inline:11.3cqi}
+  .orb blockquote{font-size:4.25cqi}
+  .orb figcaption{font-size:3.9cqi}
+  .orb figcaption::before{width:9cqi;margin-bottom:2.2cqi}
+  .orb figcaption b{font-size:4.5cqi}
+}
 .src{margin-top:var(--s5);font-size:var(--fs-sm);color:var(--muted)}
 .src a{color:var(--teal)}
 
@@ -325,7 +332,6 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
 
   <section class="wrap pad" id="work" aria-labelledby="work-h">
     <h2 id="work-h">Selected work</h2>
-    <p class="hint">Select a project for the full story.</p>
 
     <div class="work-grid">
       <article class="pcard feat">
@@ -506,18 +512,18 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
   <section class="wrap pad" id="proof" aria-labelledby="proof-h">
     <h2 id="proof-h">What colleagues say</h2>
     <div class="orbs">
-      <figure class="orb">
-        <blockquote>&ldquo;He knows Eloqua inside and out and isn&rsquo;t afraid to make recommendations to streamline and improve the overall process.&rdquo;</blockquote>
-        <figcaption><b>Court Fruge</b><span class="role">Marketing Technology Consultant</span><span class="rel">Supervisor, 2024</span></figcaption>
-      </figure>
-      <figure class="orb">
+      <figure class="orb"><div class="orb-in">
+        <blockquote>&ldquo;He knows Eloqua inside and out and isn&rsquo;t afraid to make recommendations to streamline and improve the overall process. &hellip; He is able to simplify complex technical topics into simple terms for all audiences to understand.&rdquo;</blockquote>
+        <figcaption><b>Court Fruge</b><span class="role">Marketing Technology Consultant</span><span class="rel">Supervisor, 2025</span></figcaption>
+      </div></figure>
+      <figure class="orb"><div class="orb-in">
         <blockquote>&ldquo;Harrison is extremely competent at marketing automation and a pleasure to work with. He does a great job thinking strategically about requests, and is a quick learner.&rdquo;</blockquote>
-        <figcaption><b>Emmy Silak</b><span class="role">Technical Strategist</span><span class="rel">Account Manager, 2021</span></figcaption>
-      </figure>
-      <figure class="orb">
+        <figcaption><b>Emmy Silak</b><span class="role">Technical Strategist</span><span class="rel">AM, 2021</span></figcaption>
+      </div></figure>
+      <figure class="orb"><div class="orb-in">
         <blockquote>&ldquo;Harrison is the best. He knows his way around marketing automation, sheds light on things you might have missed, and is excited to take on any new challenge&hellip;&rdquo;</blockquote>
         <figcaption><b>Autumn Righino</b><span class="role">Senior Project Manager</span><span class="rel">PMO, 2020</span></figcaption>
-      </figure>
+      </div></figure>
     </div>
     <p class="src">Excerpts from <a href="https://www.linkedin.com/in/harrison-holt">LinkedIn recommendations</a>.</p>
   </section>
