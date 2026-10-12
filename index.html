@@ -47,9 +47,10 @@
   --line:rgba(241,232,216,.10); --line-2:rgba(241,232,216,.20);
   /* color: text (all pass WCAG AA on every surface above) */
   --fg:#F2EBDD; --fg-2:#CFC6B6; --muted:#A39988;
-  /* color: data and action */
+  /* color: data (olive), context labels (teal), action (amber) */
   --olive:#B2BC7C; --olive-soft:rgba(178,188,124,.16);
   --amber:#E8B84A; --amber-hover:#F2C762; --amber-ink:#161412;
+  --teal:#86B4AE; --teal-soft:rgba(134,180,174,.14);
   --clay:#D68B66; --err:#EBA27F;
   /* type */
   --font:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -78,7 +79,7 @@ h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.1;text-wrap:balance
 .skip{position:absolute;left:var(--s4);top:-4rem;background:var(--amber);color:var(--amber-ink);padding:.6rem 1rem;border-radius:var(--r);font-weight:700;z-index:100}
 .skip:focus{top:var(--s2)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,::backdrop{transition:none!important;animation:none!important}}
-@media(forced-colors:active){.tier-bar,.blk{forced-color-adjust:none}}
+@media(forced-colors:active){.tier-bar,.blk,.pbar{forced-color-adjust:none}}
 
 /* header */
 .top{position:sticky;top:0;z-index:50;background:rgba(22,20,18,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -107,7 +108,6 @@ h1 em{font-style:normal;color:var(--olive)}
 .lede{margin-top:var(--s5);max-width:52ch;font-size:var(--fs-lg);color:var(--fg-2)}
 .lede strong{color:var(--fg)}
 .cta-row{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s5)}
-.avail{margin-top:var(--s4);font-size:var(--fs-sm);color:var(--muted)}
 .portrait{justify-self:center;width:100%;max-width:290px}
 .ph{position:relative;aspect-ratio:4/5;border-radius:14px;background:linear-gradient(165deg,var(--surface-2),var(--surface));display:grid;place-items:end center;overflow:hidden}
 .ph svg{width:74%;fill:var(--bg);opacity:.55}
@@ -118,7 +118,7 @@ h1 em{font-style:normal;color:var(--olive)}
 section.pad{padding-block:var(--s7) 0}
 h2{font-size:var(--fs-h2);margin-bottom:var(--s5)}
 .hint{margin:calc(-1*var(--s4)) 0 var(--s5);color:var(--muted)}
-.meta{font-size:var(--fs-sm);color:var(--muted)}
+.meta{font-size:var(--fs-sm);color:var(--teal)}
 
 /* shared result number */
 .result{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .6rem}
@@ -159,7 +159,7 @@ dialog.sheet[open]::backdrop{animation:fadeIn .3s ease}
 .sheet .result{margin-block:var(--s5) var(--s4)}
 .beat{display:grid;gap:var(--s1) var(--s5);padding-block:var(--s4);border-top:1px solid var(--line)}
 @media(min-width:640px){.beat{grid-template-columns:6.5rem minmax(0,1fr)}}
-.beat h4{font-size:var(--fs-sm);font-weight:700;color:var(--olive)}
+.beat h4{font-size:var(--fs-sm);font-weight:700;color:var(--teal)}
 .beat p,.beat li{color:var(--fg-2)}
 .dots{display:grid;gap:var(--s2)}
 .dots li{position:relative;padding-left:1.1rem}
@@ -179,10 +179,10 @@ dialog.sheet[open]::backdrop{animation:fadeIn .3s ease}
 .wf small{display:block;margin-top:1px;font-size:.72rem;line-height:1.25;color:var(--fg-2)}
 .wf .blk{min-height:3.4rem;background:var(--olive-soft);border:1px solid var(--olive);color:var(--fg)}
 .wf .blk.sm{min-height:2.3rem}
-.wf .cta{min-height:1.9rem;align-items:center;border:1px solid var(--fg-2);border-radius:999px;color:var(--fg-2);font-weight:600}
+.wf .cta{min-height:1.9rem;align-items:center;border:1px solid var(--teal);border-radius:999px;color:var(--teal);font-weight:600}
 .key{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5);margin-top:var(--s4);font-size:var(--fs-sm);color:var(--fg-2)}
 .key span::before{content:"";display:inline-block;width:.8rem;height:.8rem;margin-right:.45rem;border-radius:3px;vertical-align:-1px;background:var(--olive-soft);border:1px solid var(--olive)}
-.key .k-cta::before{background:transparent;border-color:var(--fg-2);border-radius:999px}
+.key .k-cta::before{background:transparent;border-color:var(--teal);border-radius:999px}
 
 /* audience by stage */
 .tiers{display:grid;gap:var(--s2)}
@@ -196,6 +196,27 @@ dialog.sheet[open]::backdrop{animation:fadeIn .3s ease}
   .tiers span.lb{order:0;font-size:.85rem;line-height:1.25}
 }
 
+/* indexed before and after */
+.pair{display:grid;gap:var(--s3)}
+.pair li{display:grid;grid-template-columns:3.5rem minmax(0,1fr) 6rem;align-items:center;gap:var(--s3)}
+.pl{font-size:var(--fs-sm);color:var(--fg-2)}
+.ptrack{display:flex;align-items:center;height:1.4rem;background-image:linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:20% 100%;border-right:1px solid var(--line)}
+.pbar{display:block;height:.9rem;width:var(--w);border-radius:0 4px 4px 0;background:var(--olive)}
+.pbar.base{background:var(--muted)}
+.pv{font-size:1.3rem;font-weight:800;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.pv em{display:block;font-style:normal;font-size:var(--fs-sm);color:var(--olive)}
+
+/* four-step flow */
+.steps{display:grid;gap:var(--s3)}
+@media(min-width:760px){.steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s4)}}
+.step{position:relative;padding:var(--s3) var(--s4);background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r)}
+.step h5{margin:0 0 .15rem;font-size:var(--fs-sm);font-weight:700;color:var(--teal)}
+.step p{font-size:var(--fs-sm);line-height:1.4;color:var(--fg)}
+.step .res{margin-top:var(--s2);font-weight:700;color:var(--olive)}
+.step.win{border-color:var(--olive)}
+.step:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:-.5rem;width:.7rem;height:.7rem;background:none;border-right:2px solid var(--fg-2);border-bottom:2px solid var(--fg-2);transform:translateX(-50%) rotate(45deg)}
+@media(min-width:760px){.step:not(:last-child)::after{left:auto;right:-.75rem;top:50%;bottom:auto;transform:translateY(-50%) rotate(-45deg)}}
+
 /* by-the-numbers */
 .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)}
 @media(min-width:640px){.facts{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -203,37 +224,45 @@ dialog.sheet[open]::backdrop{animation:fadeIn .3s ease}
 .facts b{font-size:var(--fs-num);font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--olive);font-variant-numeric:tabular-nums}
 .facts span{font-size:var(--fs-sm);color:var(--fg-2)}
 
-.clients{margin-top:var(--s5);font-size:var(--fs-sm);color:var(--muted)}
-
 /* skills and certifications: a table with thin grid lines */
-.skilltable{display:grid;gap:1px;margin:0;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;font-size:var(--fs-sm);line-height:1.65}
-@media(min-width:760px){.skilltable{grid-template-columns:repeat(2,minmax(0,1fr))}.skilltable .wide{grid-column:1/-1}}
-.skilltable>div{padding:var(--s4) var(--s5);background:var(--surface)}
-.skilltable dt,.skilltable dd{display:inline;margin:0}
-.skilltable dt{font-weight:700;color:var(--olive)}
-.skilltable dd{color:var(--fg-2)}
+.skilltable{display:grid;gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;font-size:var(--fs-sm);line-height:1.65}
+@media(min-width:760px){.skilltable{grid-template-columns:repeat(2,minmax(0,1fr))}.certhead,.certlist{grid-column:1/-1}}
+.skilltable .cell,.certhead{margin:0;padding:var(--s4) var(--s5);background:var(--surface)}
+.cell{color:var(--fg-2)}
+.cell b{font-weight:700;color:var(--teal)}
+.certhead{font-size:var(--fs-sm);font-weight:700;letter-spacing:0;line-height:1.3;color:var(--teal);padding-block:var(--s3)}
+.certlist{display:grid;gap:1px;background:var(--line-2)}
+@media(min-width:640px){.certlist{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1000px){.certlist{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.certlist li{display:flex;flex-direction:column;gap:.25rem;padding:var(--s4) var(--s5);background:var(--surface)}
+.ci{font-size:.8rem;font-weight:700;line-height:1.2;color:var(--teal)}
+.certlist b{font-size:1rem;font-weight:700;line-height:1.35;color:var(--fg)}
+.st{font-size:.8rem;color:var(--muted)}
 
 /* testimonials */
 .orbs{display:grid;gap:var(--s7);justify-items:center;padding-block:var(--s2)}
-@media(min-width:900px){.orbs{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5);align-items:start}.orb:nth-child(2){margin-top:var(--s7)}}
-.orb{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s3);width:min(100%,340px);aspect-ratio:1;padding:12%;border-radius:50%;text-align:center;background:radial-gradient(circle at 30% 22%,var(--surface-2),var(--surface) 72%)}
-.orb::before{content:"";position:absolute;inset:-8px;border:1px solid var(--olive);border-radius:50%;opacity:.4;pointer-events:none}
-.orb blockquote{font-size:.95rem;line-height:1.45}
-.orb figcaption{font-size:var(--fs-sm);line-height:1.35;color:var(--muted)}
-.orb figcaption b{display:block;color:var(--fg)}
+@media(min-width:900px){.orbs{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5);align-items:start}.tcard:nth-child(2){margin-top:var(--s7)}}
+.tcard{display:flex;flex-direction:column;align-items:center;gap:var(--s5);width:min(100%,340px)}
+.orb{position:relative;display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:1;padding:13%;border-radius:50%;text-align:center;font-size:.98rem;line-height:1.45;background:radial-gradient(circle at 30% 22%,var(--surface-2),var(--surface) 72%)}
+.orb::before{content:"";position:absolute;inset:-8px;border:1px solid var(--teal);border-radius:50%;opacity:.5;pointer-events:none}
+.tcard figcaption{display:flex;flex-direction:column;gap:.15rem;text-align:center;font-size:var(--fs-sm);line-height:1.35}
+.tcard figcaption b{font-size:1rem;color:var(--fg)}
+.tcard .role{color:var(--fg-2)}
+.tcard .rel{color:var(--muted)}
 .src{margin-top:var(--s5);font-size:var(--fs-sm);color:var(--muted)}
-.src a{color:var(--olive)}
+.src a{color:var(--teal)}
 
 /* contact */
-footer{margin-top:var(--s7);background:var(--surface)}
-.foot{display:grid;gap:var(--s6);padding-block:var(--s7)}
-@media(min-width:900px){.foot{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s7)}}
-.foot h2{margin-bottom:var(--s4)}
-.foot p{color:var(--fg-2)}
-.links{display:grid;gap:var(--s3);margin-top:var(--s5)}
-.links dt{font-size:var(--fs-sm);color:var(--muted)}
-.links dd{font-size:var(--fs-lg)}
-.links a{text-underline-offset:4px}
+.contact{margin-top:var(--s7);background:var(--surface)}
+.contact-in{display:grid;gap:var(--s5);padding-block:var(--s7)}
+@media(min-width:900px){.contact-in{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:var(--s7)}}
+.contact h2{margin-bottom:var(--s3)}
+.contact p{color:var(--fg-2)}
+.site-foot{border-top:1px solid var(--line)}
+.foot-in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--s2) var(--s5);padding-block:var(--s4);font-size:var(--fs-sm);color:var(--muted)}
+.foot-in nav{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5)}
+.foot-in a{color:var(--fg-2);text-underline-offset:3px}
+.foot-in a:hover{color:var(--fg)}
 form{display:grid;gap:var(--s4)}
 .field{display:grid;gap:var(--s2)}
 label{font-weight:700;font-size:.95rem}
@@ -248,7 +277,6 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
 .fail{border:1px solid var(--clay)}
 .ok h3,.fail h3{margin-bottom:var(--s2);font-size:1.4rem}
 .ok .btn{margin-top:var(--s4)}
-.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s2);padding-block:var(--s5);border-top:1px solid var(--line);font-size:var(--fs-sm);color:var(--muted)}
 </style>
 <noscript><style>dialog.sheet{display:block;position:static;width:auto;max-height:none;margin:var(--s5) 0;animation:none}.open,.close{display:none}</style></noscript>
 </head>
@@ -277,10 +305,8 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
       <h1 id="hero-h">Marketing operations and automation that turn <em>14 million</em> contacts into pipeline.</h1>
       <p class="lede">I&rsquo;m <strong>Harrison Holt</strong>, a senior marketing operations and automation professional with 10 years at enterprise scale. I build the lifecycle programs, governance, and data flows behind conversion, deliverability, and revenue.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#contact">Let&rsquo;s Talk</a>
-        <a class="btn btn-ghost" href="assets/Harrison-Holt-Resume.pdf" download>Download Resume</a>
+        <a class="btn btn-primary" href="assets/Harrison-Holt-Resume.pdf" download>Download Resume</a>
       </div>
-      <p class="avail">Open to senior roles in Dallas, TX. Hybrid or remote.</p>
     </div>
     <figure class="portrait">
       <!-- HEADSHOT: save your photo as assets/headshot.jpg (4:5, about 1200x1500), then remove the comment markers
@@ -307,7 +333,7 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
         <button class="open" type="button" data-open="dlg-upsell" aria-haspopup="dialog">View details<i aria-hidden="true"></i><span class="sr-only"> for dynamic upsell and cross-sell campaign</span></button>
       </article>
       <article class="pcard">
-        <p class="meta">Hero Digital</p>
+        <p class="meta">Comcast Business &middot; Hero Digital</p>
         <h3>Lead scoring realignment with sales</h3>
         <p class="result"><b>+15%</b><span>MQL-to-SQL conversion</span></p>
         <p class="tease">Sales and marketing reviewed the data together, and the scoring model got tighter.</p>
@@ -336,8 +362,6 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
       </article>
     </div>
 
-    <p class="clients">Clients include Comcast Business, TD Ameritrade, and Lamb Weston.</p>
-
     <!-- DETAIL SHEETS: native dialogs, opened by the cards above -->
     <dialog class="sheet" id="dlg-upsell" aria-labelledby="dlg-upsell-h"><div class="sheet-in">
       <header class="sheet-head"><div><p class="meta">Comcast Business &middot; Hero Digital</p><h3 id="dlg-upsell-h">Dynamic upsell and cross-sell campaign</h3></div><button class="close" type="button" data-close>Close</button></header>
@@ -364,7 +388,7 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
     </div></dialog>
 
     <dialog class="sheet" id="dlg-scoring" aria-labelledby="dlg-scoring-h"><div class="sheet-in">
-      <header class="sheet-head"><div><p class="meta">Hero Digital</p><h3 id="dlg-scoring-h">Lead scoring realignment with sales</h3></div><button class="close" type="button" data-close>Close</button></header>
+      <header class="sheet-head"><div><p class="meta">Comcast Business &middot; Hero Digital</p><h3 id="dlg-scoring-h">Lead scoring realignment with sales</h3></div><button class="close" type="button" data-close>Close</button></header>
       <p class="result"><b>+15%</b><span>MQL-to-SQL conversion</span></p>
       <div class="beat"><h4>Problem</h4><p>Lifecycle stages looked right on paper, but MQL-to-SQL conversion was inconsistent. Sales wasn&rsquo;t qualifying leads the way the scoring model assumed, and the disagreement over lead quality was creating friction.</p></div>
       <div class="beat"><h4>Solution</h4><ul class="dots">
@@ -374,6 +398,14 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
         <li>Simplified nurture paths that had grown around the old thresholds.</li>
       </ul></div>
       <div class="beat"><h4>Result</h4><p>Conversion up 15%. SQL acceptance stabilized over the following quarter and funnel reporting became trustworthy again.</p></div>
+      <figure class="viz" aria-labelledby="v2-cap">
+        <figcaption id="v2-cap">MQL-to-SQL conversion, indexed to the baseline</figcaption>
+        <ul class="pair">
+          <li><span class="pl">Before</span><span class="ptrack" aria-hidden="true"><span class="pbar base" style="--w:80%"></span></span><span class="pv">100</span></li>
+          <li><span class="pl">After</span><span class="ptrack" aria-hidden="true"><span class="pbar" style="--w:92%"></span></span><span class="pv">115 <em>+15%</em></span></li>
+        </ul>
+        <p class="fine">Baseline = 100. Absolute rates are not shown.</p>
+      </figure>
       <p class="built"><b>Built with</b> Lead scoring, lifecycle stages, segmentation</p>
     </div></dialog>
 
@@ -414,6 +446,15 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
         <li>Added QA checkpoints to keep sends compliant with CAN-SPAM and internal governance.</li>
       </ul></div>
       <div class="beat"><h4>Result</h4><p>Deliverability improved 10% within a quarter. Engagement stabilized, compliance risk dropped, and confidence in the campaign metrics came back.</p></div>
+      <figure class="viz" aria-labelledby="v4-cap">
+        <figcaption id="v4-cap">How it was fixed</figcaption>
+        <ol class="steps">
+          <li class="step"><h5>1. Audit</h5><p>Find the root cause</p></li>
+          <li class="step"><h5>2. Authenticate</h5><p>SPF, DKIM, DMARC</p></li>
+          <li class="step"><h5>3. Clean up</h5><p>Suppression logic, list hygiene</p></li>
+          <li class="step win"><h5>4. Stay compliant</h5><p>QA checkpoints, CAN-SPAM</p><p class="res">+10% in one quarter</p></li>
+        </ol>
+      </figure>
       <p class="built"><b>Built with</b> SPF, DKIM, DMARC, suppression logic</p>
     </div></dialog>
 
@@ -443,67 +484,74 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
 
   <section class="wrap pad" id="skills" aria-labelledby="skills-h">
     <h2 id="skills-h">Skills and certifications</h2>
-    <dl class="skilltable">
-      <div><dt>Platforms:</dt> <dd>Oracle Eloqua, Pardot, Salesforce Marketing Cloud, Salesforce CRM, Zoho, HubSpot</dd></div>
-      <div><dt>Lifecycle and demand gen:</dt> <dd>Journey design, segmentation, behavioral triggers, lead scoring, A/B testing, customer marketing, RevOps alignment</dd></div>
-      <div><dt>Analytics:</dt> <dd>Tableau, Power BI, Google Analytics, KPI dashboards, attribution</dd></div>
-      <div><dt>Governance and enablement:</dt> <dd>Deliverability, CAN-SPAM and GDPR, data governance, campaign QA, HTML/CSS/JavaScript, playbooks and training, team leadership</dd></div>
-      <div class="wide"><dt>Certifications:</dt> <dd>Marketing Cloud Account Engagement (Pardot) Consultant, Salesforce; Sales Hub Software, HubSpot Academy; Integrating With HubSpot I: Foundations, HubSpot Academy; Eloqua Implementation Specialist, Oracle (in progress)</dd></div>
-    </dl>
+    <div class="skilltable">
+      <p class="cell"><b>Platforms:</b> Oracle Eloqua, Pardot, Salesforce Marketing Cloud, Salesforce CRM, Zoho, HubSpot, Tableau, Power BI, Google Analytics</p>
+      <p class="cell"><b>Lifecycle:</b> Journey design, segmentation, behavioral triggers, lead scoring, customer marketing, demand generation, RevOps alignment</p>
+      <p class="cell"><b>Analytics:</b> KPI dashboards, QBR reporting, campaign and funnel reporting, marketing attribution, A/B testing, tracking tags and scripts</p>
+      <p class="cell"><b>Operations:</b> Deliverability, CAN-SPAM, GDPR, data governance, campaign QA, HTML/CSS/JS, playbooks and training, team leadership</p>
+      <h3 class="certhead">Certifications</h3>
+      <ul class="certlist">
+        <li><span class="ci">Salesforce</span><b>Marketing Cloud Account Engagement (Pardot) Consultant</b></li>
+        <li><span class="ci">HubSpot Academy</span><b>Sales Hub Software</b></li>
+        <li><span class="ci">HubSpot Academy</span><b>Integrating With HubSpot I: Foundations</b></li>
+        <li><span class="ci">Oracle</span><b>Eloqua Implementation Specialist</b><span class="st">In progress</span></li>
+      </ul>
+    </div>
   </section>
 
   <section class="wrap pad" id="proof" aria-labelledby="proof-h">
     <h2 id="proof-h">What colleagues say</h2>
     <div class="orbs">
-      <figure class="orb">
-        <blockquote>&ldquo;He knows Eloqua inside and out and isn&rsquo;t afraid to make recommendations to streamline and improve the overall process.&rdquo;</blockquote>
-        <figcaption><b>Court Fruge</b>Direct manager, 2025</figcaption>
+      <figure class="tcard">
+        <blockquote class="orb">&ldquo;He knows Eloqua inside and out and isn&rsquo;t afraid to make recommendations to streamline and improve the overall process.&rdquo;</blockquote>
+        <figcaption><b>Court Fruge</b><span class="role">Marketing Technology and Marketing Automation</span><span class="rel">Managed Harrison directly &middot; 2025</span></figcaption>
       </figure>
-      <figure class="orb">
-        <blockquote>&ldquo;Harrison is extremely competent at marketing automation and a pleasure to work with. He does a great job thinking strategically about requests, and is a quick learner.&rdquo;</blockquote>
-        <figcaption><b>Mariana &ldquo;Emmy&rdquo; Silak</b>Senior colleague, 2020</figcaption>
+      <figure class="tcard">
+        <blockquote class="orb">&ldquo;Harrison is extremely competent at marketing automation and a pleasure to work with. He does a great job thinking strategically about requests, and is a quick learner.&rdquo;</blockquote>
+        <figcaption><b>Emmy Silak</b><span class="role">Strategic Marketing Operations Leadership</span><span class="rel">Senior colleague &middot; 2020</span></figcaption>
       </figure>
-      <figure class="orb">
-        <blockquote>&ldquo;Harrison is the best. He knows his way around marketing automation, sheds light on things you might have missed, and is excited to take on any new challenge&hellip;&rdquo;</blockquote>
-        <figcaption><b>Autumn Righino, PMP</b>Teammate, 2020</figcaption>
+      <figure class="tcard">
+        <blockquote class="orb">&ldquo;Harrison is the best. He knows his way around marketing automation, sheds light on things you might have missed, and is excited to take on any new challenge&hellip;&rdquo;</blockquote>
+        <figcaption><b>Autumn Righino, PMP</b><span class="role">Senior Project Manager</span><span class="rel">Worked on the same team &middot; 2020</span></figcaption>
       </figure>
     </div>
     <p class="src">Excerpts from <a href="https://www.linkedin.com/in/harrison-holt">LinkedIn recommendations</a>.</p>
   </section>
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap contact-in">
+      <div>
+        <h2 id="contact-h">Let&rsquo;s talk.</h2>
+        <p>Recruiters and hiring teams: tell me about the role.</p>
+      </div>
+      <div>
+        <form id="contact-form" novalidate aria-label="Contact form">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-err"><p class="err" id="name-err" hidden>Enter your name.</p></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-err"><p class="err" id="email-err" hidden>Enter a valid email address.</p></div>
+          <div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="5" required aria-describedby="message-err"></textarea><p class="err" id="message-err" hidden>Add a short message.</p></div>
+          <input class="hp" id="botcheck" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="actions"><button class="btn btn-primary" id="send" type="submit">Send message</button><a class="btn btn-ghost" href="assets/Harrison-Holt-Resume.pdf" download>Download Resume</a></div>
+          <noscript><p class="fine">The form needs JavaScript. Email harrisonholt@outlook.com instead.</p></noscript>
+        </form>
+        <div class="ok" id="form-ok" tabindex="-1" role="status" hidden>
+          <h3>Thanks, <span id="ok-name"></span>. Your message is in.</h3>
+          <p>I reply within 1 business day.</p>
+          <a class="btn btn-ghost" href="assets/Harrison-Holt-Resume.pdf" download>Download Resume</a>
+        </div>
+        <div class="fail" id="form-fail" tabindex="-1" role="alert" hidden>
+          <h3>That didn&rsquo;t send.</h3>
+          <p>Please email me directly at <a href="mailto:harrisonholt@outlook.com">harrisonholt@outlook.com</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer id="contact">
-  <div class="wrap foot">
-    <div>
-      <h2>Let&rsquo;s talk.</h2>
-      <p>Recruiters and hiring teams: tell me about the role.</p>
-      <dl class="links">
-        <dt>Email</dt><dd><a href="mailto:harrisonholt@outlook.com">harrisonholt@outlook.com</a></dd>
-        <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/harrison-holt">linkedin.com/in/harrison-holt</a></dd>
-        <dt>GitHub</dt><dd><a href="https://github.com/harrisondholt">github.com/harrisondholt</a></dd>
-      </dl>
-    </div>
-    <div>
-      <form id="contact-form" novalidate aria-label="Contact form">
-        <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-err"><p class="err" id="name-err" hidden>Enter your name.</p></div>
-        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-err"><p class="err" id="email-err" hidden>Enter a valid email address.</p></div>
-        <div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="5" required aria-describedby="message-err"></textarea><p class="err" id="message-err" hidden>Add a short message.</p></div>
-        <input class="hp" id="botcheck" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="actions"><button class="btn btn-primary" id="send" type="submit">Send message</button><a class="btn btn-ghost" href="assets/Harrison-Holt-Resume.pdf" download>Download Resume</a></div>
-        <noscript><p class="fine">The form needs JavaScript. Email harrisonholt@outlook.com instead.</p></noscript>
-      </form>
-      <div class="ok" id="form-ok" tabindex="-1" role="status" hidden>
-        <h3>Thanks, <span id="ok-name"></span>. Your message is in.</h3>
-        <p>I reply within 1 business day.</p>
-        <a class="btn btn-ghost" href="assets/Harrison-Holt-Resume.pdf" download>Download Resume</a>
-      </div>
-      <div class="fail" id="form-fail" tabindex="-1" role="alert" hidden>
-        <h3>That didn&rsquo;t send.</h3>
-        <p>Please email me directly at <a href="mailto:harrisonholt@outlook.com">harrisonholt@outlook.com</a>.</p>
-      </div>
-    </div>
+<footer class="site-foot">
+  <div class="wrap foot-in">
+    <span>&copy; 2026 Harrison Holt</span>
+    <nav aria-label="Contact links"><a href="mailto:harrisonholt@outlook.com">harrisonholt@outlook.com</a><a href="https://www.linkedin.com/in/harrison-holt">LinkedIn</a><a href="https://github.com/harrisondholt">GitHub</a></nav>
+    <span>Dallas, TX</span>
   </div>
-  <div class="wrap legal"><span>&copy; 2026 Harrison Holt</span><span>Dallas, TX</span></div>
 </footer>
 
 <script>
