@@ -224,31 +224,34 @@ dialog.sheet[open]::backdrop{animation:fadeIn .3s ease}
 .facts b{font-size:var(--fs-num);font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--olive);font-variant-numeric:tabular-nums}
 .facts span{font-size:var(--fs-sm);color:var(--fg-2)}
 
-/* skills and certifications: a table with thin grid lines */
+/* skills: a table with thin grid lines */
 .skilltable{display:grid;gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;font-size:var(--fs-sm);line-height:1.65}
-@media(min-width:760px){.skilltable{grid-template-columns:repeat(2,minmax(0,1fr))}.certhead,.certlist{grid-column:1/-1}}
-.skilltable .cell,.certhead{margin:0;padding:var(--s4) var(--s5);background:var(--surface)}
-.cell{color:var(--fg-2)}
+@media(min-width:760px){.skilltable{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.skilltable .cell{margin:0;padding:var(--s4) var(--s5);background:var(--surface);color:var(--fg-2)}
 .cell b{font-weight:700;color:var(--teal)}
-.certhead{font-size:var(--fs-sm);font-weight:700;letter-spacing:0;line-height:1.3;color:var(--teal);padding-block:var(--s3)}
-.certlist{display:grid;gap:1px;background:var(--line-2)}
-@media(min-width:640px){.certlist{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(min-width:1000px){.certlist{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.certlist li{display:flex;flex-direction:column;gap:.25rem;padding:var(--s4) var(--s5);background:var(--surface)}
+
+/* certifications: separate cards, set apart from the skills table */
+.certs-h{margin:var(--s7) 0 var(--s4);font-size:var(--fs-lg);font-weight:800}
+.certs{display:grid;gap:var(--s3)}
+@media(min-width:640px){.certs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1000px){.certs{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.certs li{display:flex;flex-direction:column;gap:.25rem;padding:var(--s4) var(--s5);background:var(--surface);border-radius:var(--r);box-shadow:inset 0 2px 0 var(--teal)}
 .ci{font-size:.8rem;font-weight:700;line-height:1.2;color:var(--teal)}
-.certlist b{font-size:1rem;font-weight:700;line-height:1.35;color:var(--fg)}
+.certs b{font-size:1rem;font-weight:700;line-height:1.35;color:var(--fg)}
 .st{font-size:.8rem;color:var(--muted)}
 
-/* testimonials */
+/* testimonials: the quote and the person's details sit inside the circle */
 .orbs{display:grid;gap:var(--s7);justify-items:center;padding-block:var(--s2)}
-@media(min-width:900px){.orbs{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5);align-items:start}.tcard:nth-child(2){margin-top:var(--s7)}}
-.tcard{display:flex;flex-direction:column;align-items:center;gap:var(--s5);width:min(100%,340px)}
-.orb{position:relative;display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:1;padding:13%;border-radius:50%;text-align:center;font-size:.98rem;line-height:1.45;background:radial-gradient(circle at 30% 22%,var(--surface-2),var(--surface) 72%)}
+@media(min-width:1100px){.orbs{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4);align-items:start}.orb:nth-child(2){margin-top:var(--s7)}}
+.orb{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s3);width:min(100%,350px);aspect-ratio:1;padding:1.9rem 2.4rem;border-radius:50%;text-align:center;background:radial-gradient(circle at 30% 22%,var(--surface-2),var(--surface) 72%)}
 .orb::before{content:"";position:absolute;inset:-8px;border:1px solid var(--teal);border-radius:50%;opacity:.5;pointer-events:none}
-.tcard figcaption{display:flex;flex-direction:column;gap:.15rem;text-align:center;font-size:var(--fs-sm);line-height:1.35}
-.tcard figcaption b{font-size:1rem;color:var(--fg)}
-.tcard .role{color:var(--fg-2)}
-.tcard .rel{color:var(--muted)}
+.orb blockquote{font-size:.9rem;line-height:1.4}
+.orb figcaption{display:flex;flex-direction:column;gap:.1rem;font-size:.82rem;line-height:1.3}
+.orb figcaption::before{content:"";display:block;width:2rem;height:2px;margin:0 auto var(--s2);background:var(--teal)}
+.orb figcaption b{font-size:.95rem;color:var(--fg)}
+.orb .role{color:var(--fg-2)}
+.orb .rel{color:var(--muted)}
+@media(max-width:380px){.orb{padding:1.4rem 1.9rem;gap:var(--s2)}.orb blockquote{font-size:.82rem}.orb figcaption{font-size:.78rem}}
 .src{margin-top:var(--s5);font-size:var(--fs-sm);color:var(--muted)}
 .src a{color:var(--teal)}
 
@@ -489,30 +492,31 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--clay
       <p class="cell"><b>Lifecycle:</b> Journey design, segmentation, behavioral triggers, lead scoring, customer marketing, demand generation, RevOps alignment</p>
       <p class="cell"><b>Analytics:</b> KPI dashboards, QBR reporting, campaign and funnel reporting, marketing attribution, A/B testing, tracking tags and scripts</p>
       <p class="cell"><b>Operations:</b> Deliverability, CAN-SPAM, GDPR, data governance, campaign QA, HTML/CSS/JS, playbooks and training, team leadership</p>
-      <h3 class="certhead">Certifications</h3>
-      <ul class="certlist">
-        <li><span class="ci">Salesforce</span><b>Marketing Cloud Account Engagement (Pardot) Consultant</b></li>
-        <li><span class="ci">HubSpot Academy</span><b>Sales Hub Software</b></li>
-        <li><span class="ci">HubSpot Academy</span><b>Integrating With HubSpot I: Foundations</b></li>
-        <li><span class="ci">Oracle</span><b>Eloqua Implementation Specialist</b><span class="st">In progress</span></li>
-      </ul>
     </div>
+
+    <h3 class="certs-h">Certifications</h3>
+    <ul class="certs">
+      <li><span class="ci">Salesforce</span><b>Marketing Cloud Account Engagement (Pardot) Consultant</b></li>
+      <li><span class="ci">HubSpot Academy</span><b>Sales Hub Software</b></li>
+      <li><span class="ci">HubSpot Academy</span><b>Integrating With HubSpot I: Foundations</b></li>
+      <li><span class="ci">Oracle</span><b>Eloqua Implementation Specialist</b><span class="st">In progress</span></li>
+    </ul>
   </section>
 
   <section class="wrap pad" id="proof" aria-labelledby="proof-h">
     <h2 id="proof-h">What colleagues say</h2>
     <div class="orbs">
-      <figure class="tcard">
-        <blockquote class="orb">&ldquo;He knows Eloqua inside and out and isn&rsquo;t afraid to make recommendations to streamline and improve the overall process.&rdquo;</blockquote>
-        <figcaption><b>Court Fruge</b><span class="role">Marketing Technology and Marketing Automation</span><span class="rel">Managed Harrison directly &middot; 2025</span></figcaption>
+      <figure class="orb">
+        <blockquote>&ldquo;He knows Eloqua inside and out and isn&rsquo;t afraid to make recommendations to streamline and improve the overall process.&rdquo;</blockquote>
+        <figcaption><b>Court Fruge</b><span class="role">Marketing Technology Consultant</span><span class="rel">Supervisor, 2024</span></figcaption>
       </figure>
-      <figure class="tcard">
-        <blockquote class="orb">&ldquo;Harrison is extremely competent at marketing automation and a pleasure to work with. He does a great job thinking strategically about requests, and is a quick learner.&rdquo;</blockquote>
-        <figcaption><b>Emmy Silak</b><span class="role">Strategic Marketing Operations Leadership</span><span class="rel">Senior colleague &middot; 2020</span></figcaption>
+      <figure class="orb">
+        <blockquote>&ldquo;Harrison is extremely competent at marketing automation and a pleasure to work with. He does a great job thinking strategically about requests, and is a quick learner.&rdquo;</blockquote>
+        <figcaption><b>Emmy Silak</b><span class="role">Technical Strategist</span><span class="rel">Account Manager, 2021</span></figcaption>
       </figure>
-      <figure class="tcard">
-        <blockquote class="orb">&ldquo;Harrison is the best. He knows his way around marketing automation, sheds light on things you might have missed, and is excited to take on any new challenge&hellip;&rdquo;</blockquote>
-        <figcaption><b>Autumn Righino, PMP</b><span class="role">Senior Project Manager</span><span class="rel">Worked on the same team &middot; 2020</span></figcaption>
+      <figure class="orb">
+        <blockquote>&ldquo;Harrison is the best. He knows his way around marketing automation, sheds light on things you might have missed, and is excited to take on any new challenge&hellip;&rdquo;</blockquote>
+        <figcaption><b>Autumn Righino</b><span class="role">Senior Project Manager</span><span class="rel">PMO, 2020</span></figcaption>
       </figure>
     </div>
     <p class="src">Excerpts from <a href="https://www.linkedin.com/in/harrison-holt">LinkedIn recommendations</a>.</p>
